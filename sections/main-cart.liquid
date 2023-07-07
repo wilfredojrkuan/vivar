@@ -1,0 +1,335 @@
+{% if request.path == '/cart' and settings.hide_search %}
+  {% layout none %}
+  <script type="text/javascript">
+    if (parseInt(getCookie(lopCookie)) != -1) {
+      window.location.replace(getCookie(lopCookie));
+    } else {
+      window.location.replace("/");
+    }
+  </script>
+{% else %}
+  <div id="motMainCartPage" class="page-width page-width--narrow page-content{% if cart.item_count == 0 %} is-empty{% endif %}">
+  
+    {%- render 'breadcrumbs' -%}
+  
+    <header class="section-header text-center{% if cart.item_count == 0 %} section-header--404{% endif %}">
+      <h1 class="section-header__title">{{ 'cart.general.title' | t }}</h1>
+      {% comment %}
+      <div class="rte text-spacing">
+        <p>{{ 'cart.general.continue_browsing_html' | t: url: routes.all_products_collection_url }}</p>
+      </div>
+      {% endcomment %}
+    </header>
+  
+    <div class="cart__empty-text text-center">
+      <p>{{ 'cart.general.empty' | t }}</p>
+    </div>
+  
+    {%- if cart.item_count > 0 -%}
+    {% assign mot_item_count = 0 %}
+  
+    {% for item in cart.items %}
+   	{% assign mot_item_count = mot_item_count | plus: item.quantity %}
+    {% endfor %}
+      
+    {% assign bundleSavingMot = 0 %}
+    {% assign bundleSavingPercentageMot = 0 %}
+    {% assign bundleTotalMot = cart.total_price %}
+    {% assign checkout_link_mot = routes.cart_url %}
+  
+    {% if settings.apply_bundle_discounts == true %}
+      {% assign discountx2 = settings.discount_value_1 %}
+      {% assign discountx3 = settings.discount_value_2 %}
+      {% assign discountx4 = settings.discount_value_3 %}
+  
+      {% assign discountNamex2 = settings.discount_label_1 %}
+      {% assign discountNamex3 = settings.discount_label_2 %}
+      {% assign discountNamex4 = settings.discount_label_3 %}
+  
+      <div id="motSavingsCart" class="motDividerDiv" style="margin-bottom: 15px; width: 100%; padding-top: 0px !important; padding-bottom: 40px; text-align: left; line-height: 1.5; font-size: 16px;">
+        {% if mot_item_count == 1 %}
+          {{ settings.cart_upsell_title_1 }}
+          <div style="padding-top: 3px; font-size: 15px; font-weight: 300 !important;">
+            {{ settings.cart_upsell_label_1 }}
+          </div>
+  
+          <table class="table-no-border-mot4" style="background-color: rgba(0, 0, 0, 0.0) !important; border-spacing: 0 !important; width: 100%; text-align: center; margin-top: 10px;">
+            <tr>
+              <td style="width: 24%">
+                <div class="w3-container w3-blue w3-round-large">0%</div>
+              </td>
+              <td style="width: 1%">
+                &nbsp;
+              </td>
+              <td style="width: 24%">
+                <div class="w3-container w3-light-grey w3-round-large">{{ discountx2 }}%</div>
+              </td>
+              <td style="width: 1%">
+                &nbsp;
+              </td>
+              <td style="width: 24%">
+                <div class="w3-container w3-light-grey w3-round-large">{{ discountx3 }}%</div>
+              </td>
+              <td style="width: 1%">
+                &nbsp;
+              </td>
+              <td style="width: 24%">
+                <div class="w3-container w3-light-grey w3-round-large">{{ discountx4 }}%</div>
+              </td>
+            </tr>
+          </table>
+        {% elsif mot_item_count == 2 %}
+        {% assign bundleSavingPercentageMot = discountx2 %}
+        {% assign checkout_link_mot = routes.cart_url | append: '?discount=' | append: discountNamex2 %}
+          {{ settings.cart_upsell_title_2 }}
+          <div style="padding-top: 3px; font-size: 15px; font-weight: 300 !important;">
+            {{ settings.cart_upsell_label_2 }}
+          </div>
+  
+          <table class="table-no-border-mot4" style="background-color: rgba(0, 0, 0, 0.0) !important; border-spacing: 0 !important; width: 100%; text-align: center; margin-top: 10px;">
+            <tr>
+              <td style="width: 24%">
+                <div class="w3-container w3-blue w3-round-large"></div>
+              </td>
+              <td style="width: 1%">
+                &nbsp;
+              </td>
+              <td style="width: 24%">
+                <div class="w3-container w3-blue w3-round-large">{{ discountx2 }}%</div>
+              </td>
+              <td style="width: 1%">
+                &nbsp;
+              </td>
+              <td style="width: 24%">
+                <div class="w3-container w3-light-grey w3-round-large">{{ discountx3 }}%</div>
+              </td>
+              <td style="width: 1%">
+                &nbsp;
+              </td>
+              <td style="width: 24%">
+                <div class="w3-container w3-light-grey w3-round-large">{{ discountx4 }}%</div>
+              </td>
+            </tr>
+          </table>
+        {% elsif mot_item_count == 3 %}
+        {% assign bundleSavingPercentageMot = discountx3 %}
+        {% assign checkout_link_mot = routes.cart_url | append: '?discount=' | append: discountNamex3 %}
+          {{ settings.cart_upsell_title_3 }}
+          <div style="padding-top: 3px; font-size: 15px; font-weight: 300 !important;">
+            {{ settings.cart_upsell_label_3 }}
+          </div>
+  
+          <table class="table-no-border-mot4" style="background-color: rgba(0, 0, 0, 0.0) !important; border-spacing: 0 !important; width: 100%; text-align: center; margin-top: 10px;">
+            <tr>
+              <td style="width: 24%">
+                <div class="w3-container w3-blue w3-round-large"></div>
+              </td>
+              <td style="width: 1%">
+                &nbsp;
+              </td>
+              <td style="width: 24%">
+                <div class="w3-container w3-blue w3-round-large"></div>
+              </td>
+              <td style="width: 1%">
+                &nbsp;
+              </td>
+              <td style="width: 24%">
+                <div class="w3-container w3-blue w3-round-large">{{ discountx3 }}%</div>
+              </td>
+              <td style="width: 1%">
+                &nbsp;
+              </td>
+              <td style="width: 24%">
+                <div class="w3-container w3-light-grey w3-round-large">{{ discountx4 }}%</div>
+              </td>
+            </tr>
+          </table>
+        {% elsif mot_item_count >= 4 %}
+        {% assign bundleSavingPercentageMot = discountx4 %}
+        {% assign checkout_link_mot = routes.cart_url | append: '?discount=' | append: discountNamex4 %}
+          {{ settings.cart_upsell_title_4 }}
+          <div style="padding-top: 3px; font-size: 15px; font-weight: 300 !important;">
+            {{ settings.cart_upsell_label_4 }}
+          </div>
+  
+          <table class="table-no-border-mot4" style="background-color: rgba(0, 0, 0, 0.0) !important; border-spacing: 0 !important; width: 100%; text-align: center; margin-top: 10px;">
+            <tr>
+              <td style="width: 24%">
+                <div class="w3-container w3-blue w3-round-large"></div>
+              </td>
+              <td style="width: 1%">
+                &nbsp;
+              </td>
+              <td style="width: 24%">
+                <div class="w3-container w3-blue w3-round-large"></div>
+              </td>
+              <td style="width: 1%">
+                &nbsp;
+              </td>
+              <td style="width: 24%">
+                <div class="w3-container w3-blue w3-round-large"></div>
+              </td>
+              <td style="width: 1%">
+                &nbsp;
+              </td>
+              <td style="width: 24%">
+                <div class="w3-container w3-blue w3-round-large">{{ discountx4 }}%</div>
+              </td>
+            </tr>
+          </table>
+        {% endif %}
+        
+      </div>
+  
+      {% assign bundleSavingMot = cart.total_price | times: bundleSavingPercentageMot | floor | divided_by: 100 %}
+      {% assign bundleTotalMot = cart.total_price | minus: bundleSavingMot %} 
+    {% else %}
+      <div style="padding-bottom: 40px;"></div> 
+    {% endif %}
+  
+  
+  
+  
+  
+  
+      
+      <form action="{{ checkout_link_mot }}" method="post" novalidate data-location="page" id="CartPageForm" class="js-cart_bundle_discount_trigger">
+        <div class="cart__item cart__item--headers small--hide">
+          <div class="cart__item--details">
+            <div class="cart__item--qty">{{ 'cart.label.quantity' | t }}</div>
+            <div class="cart__item--price text-right">{{ 'cart.label.total' | t }}</div>
+          </div>
+        </div>
+  
+        <div data-products>
+          {%- for item in cart.items -%}
+            {%- render 'cart-item', product: item -%}
+          {%- endfor -%}
+        </div>
+  
+        <div class="cart__footer" style="padding-top: 15px;">
+          <div class="grid">
+            {%- if settings.cart_notes_enable -%}
+              <div class="grid__item medium-up--one-half">
+                <label for="CartNote">{{ 'cart.general.note' | t }}</label>
+                <textarea name="note" class="input-full cart-notes" id="CartNote">{{ cart.note }}</textarea>
+              </div>
+            {%- endif -%}
+            
+            <div class="grid__item medium-up--one-half text-center medium-up--text-right{% unless settings.cart_notes_enable %} medium-up--push-one-half{% endunless %}">
+  
+  		  <div id="motSumsCart">
+  
+              <div class="cart__item-sub cart__item-row">
+                <div class="cart__subtotal">
+                  Zwischensumme
+                </div>
+                <div class="data-subtotal">
+                  {{ cart.total_price | money }}
+                </div>
+              </div>
+  
+              {% if bundleSavingMot > 0 %}
+              <div class="cart__item-sub cart__item-row">
+                <div class="cart__subtotal">
+                  Mengenrabatt ({{ bundleSavingPercentageMot }}%)
+                </div>
+                <div class="data-subtotal">
+                  -{{ bundleSavingMot | money }}
+                </div>
+              </div>
+              {% endif %}
+  
+  			{% if settings.shipping_free_shipping %}
+  				<div class="cart__item-sub cart__item-row">
+  				  <div class="cart__subtotal">
+  					Versand
+  				  </div>
+  				  <div class="data-subtotal">
+  					Kostenlos
+  				  </div>
+  				</div>
+  			{% endif %}
+  
+              <div style="border-top: 1px dashed #BFBDBD; margin-top: 10px; padding-bottom: 10px;"></div>
+  
+              <div class="cart__item-sub cart__item-row">
+                <div class="cart__subtotal" style="font-weight: normal !important;">
+                  Gesamtsumme
+                </div>
+                <div class="data-subtotal" style="font-weight: normal !important;">
+                  {{ bundleTotalMot | money }}
+                </div>
+              </div>
+  
+              {% if settings.show_plant_trees %}
+                <div style="margin-top: 18px;">
+                  <table class="table-no-border-mot4" style="background-color: rgba(0, 0, 0, 0.0) !important; border-spacing: 0 !important; width: auto; margin-left: auto; margin-right: auto;">
+                    <tr>
+                      <td style="height: 21px; width: 21px;"><img class="lazyload" src="https://cdn.shopify.com/s/files/1/0599/7648/2966/files/PlantTreeIcon3.svg?v=1645273543" /></td>
+                      <td style="padding-left: 8px !important; padding-top: 1px !important; font-size: 14px; font-weight: 300;">Mit deinem Kauf pflanzt du {{ mot_item_count }} {% if mot_item_count == 1 %}Baum{% else %}Bäume{% endif %}</td>
+                    </tr>
+                  </table>
+                </div>
+              {% else %}
+                <div style="margin-top: 22px;"></div>
+              {% endif %}
+            </div>
+  
+              <div class="cart__checkout-wrapper">
+                <button id="motCheckoutBtn" type="submit" name="checkout" {% if settings.cart_terms_conditions_enable %} data-terms="CartPageAgree"{% endif %} class="btn btn--no-animate cart__checkout">
+                  <div style="display: table-row; text-align: center;">
+                  <div style="display: table-cell; vertical-align: middle;">
+                      <svg aria-hidden="true" focusable="false" role="presentation" style="margin-right: 6px;" class="icon icon-lock-mot" viewBox="0 0 64 64"><path class="a" d="M19.45 23.6v-3.2c0-7 5.89-11.75 12.55-11.75 7.21 0 12.55 5.49 12.55 11.75v3.2M10 23.6h44v31.75H10zM32 37.47v7.47"/><circle class="a" cx="32" cy="35.87" r="1.6"/></svg>
+                  </div>
+                  <div style="display: table-cell; vertical-align: middle; padding-top: 1px;">      
+                    <span >
+                      {{ 'cart.general.checkout' | t }}
+                    </span>
+                  </div>
+                </div>
+                </button>
+                
+                {% if settings.show_payment_badges %}  
+        		    {% if settings.show_payment_badges_border %}
+                    <fieldset class="payment-fieldset">
+                      <legend class="payment-fieldset-legend">{{ settings.payment_badges_title }}</legend>
+                  {% endif %}  
+                      <div id="mot-satc-payment-badges" style="text-align: center; padding-top: 8px !important;">
+                        <span>
+                          {% if settings.payment_badges_show_amazon %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'amazon_payments' | payment_type_img_url }}" alt="amazon payments" />{% endif %}
+                          {% if settings.payment_badges_show_apple %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'apple_pay' | payment_type_img_url }}" alt="apple pay" />{% endif %}
+                          {% if settings.payment_badges_show_google %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'google_pay' | payment_type_img_url }}" alt="google pay" />{% endif %}
+                          {% if settings.payment_badges_show_klarna %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'klarna' | payment_type_img_url }}" alt="klarna" />{% endif %}
+                          {% if settings.payment_badges_show_maestro %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'maestro' | payment_type_img_url }}" alt="maestro" />{% endif %}
+                          {% if settings.payment_badges_show_master %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'master' | payment_type_img_url }}" alt="master" />{% endif %}
+                          {% if settings.payment_badges_show_paypal %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'paypal' | payment_type_img_url }}" alt="paypal" />{% endif %}
+                          {% if settings.payment_badges_show_visa %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'visa' | payment_type_img_url }}" alt="visa" />{% endif %}
+                        </span>
+                      </div>
+                  {% if settings.show_payment_badges_border %}
+                    </fieldset>
+                  {% endif %}
+                {% endif %}
+  
+                {%- if additional_checkout_buttons and settings.cart_additional_buttons -%}
+                  <div class="additional-checkout-buttons additional-checkout-buttons--vertical">{{ content_for_additional_checkout_buttons }}</div>
+                {%- endif -%}
+              </div>
+  
+            </div>
+          </div>
+  
+        </div>
+  
+      </form>
+    {%- endif -%}
+  </div>
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "t:sections.main-cart.name"
+}
+{% endschema %}

@@ -1,0 +1,117 @@
+<div id="Product-content-{{ id }}">
+  <div style="margin-top: {{ priceDistToTop }}px !important"></div>
+   
+  <div style="margin-bottom: 10px; display: flex; justify-content: space-between;">
+    <div class="label" style="font-size: {{ priceDistributionHeadingFontSize }}px;">
+      {{ priceHeadingTitle }}
+    </div>
+
+    <div style="font-weight: 300; font-size: {{ priceDistributionTitleFontSize }}px;">
+      {% if priceShowLink %}
+        <a class="js-no-transition" href="#" onclick="JumpToAnchor();return false;" {% if priceShowLinkColor %}style="color: {{ settings.mot_color_link }} !important"{% endif %}>
+          {{ priceHeadingLink }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if priceTableBreakMobile %}
+  <div id="price-desktop-table">
+  {% endif %}
+    <div style="display: flex; justify-content: center;">
+      <table class="table-no-border-mot-price-dist priceTableWidth" style="align-self: center; table-layout: fixed;">
+        <tbody>
+          <tr style="font-size: {{ priceDistributionTitleFontSize }}px !important;">
+            <td width="auto" style="background-color: {{ settings.color_body_bg }};"></td>
+            <td class="priceTableDataBlockSpacer" width="{% if distributeWidthEvenly %}25{% else %}{{ priceFirstBlockPercentage }}{% endif %}%" style="background-color: {{ priceFirstBlockColor }}; {% if priceTableBorderTop %}border-top: {{ priceTableBorderThickness }}px solid {{ priceFirstBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceFirstBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceFirstBlockColor }}{% endif %};">{{ priceFirstBlockPercentage }}%</td>
+            <td class="priceTableDataBlockRaw"></td>
+  
+            <td class="priceTableDataBlockSpacer" width="{% if distributeWidthEvenly %}25{% else %}{{ priceSecondBlockPercentage }}{% endif %}%" style="background-color: {{ priceSecondBlockColor }}; {% if priceTableBorderTop %}border-top: {{ priceTableBorderThickness }}px solid {{ priceSecondBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceSecondBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceSecondBlockColor }}{% endif %};">{{ priceSecondBlockPercentage }}%</td>
+            <td class="priceTableDataBlockRaw"></td>
+  
+            <td class="priceTableDataBlockSpacer" width="{% if distributeWidthEvenly %}25{% else %}{{ priceThirdBlockPercentage }}{% endif %}%" style="background-color: {{ priceThirdBlockColor }}; {% if priceTableBorderTop %}border-top: {{ priceTableBorderThickness }}px solid {{ priceThirdBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceThirdBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceThirdBlockColor }}{% endif %};">{{ priceThirdBlockPercentage }}%</td>
+            <td class="priceTableDataBlockRaw"></td>
+  
+            <td class="priceTableDataBlockSpacer" width="{% if distributeWidthEvenly %}25{% else %}{{ priceFourthBlockPercentage }}{% endif %}%" style="background-color: {{ priceFourthBlockColor }}; {% if priceTableBorderTop %}border-top: {{ priceTableBorderThickness }}px solid {{ priceFourthBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceFourthBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceFourthBlockColor }}{% endif %};">{{ priceFourthBlockPercentage }}%</td>
+            <td width="auto" style="background-color: {{ settings.color_body_bg }};"></td>
+          </tr>
+          <tr style="font-weight: 300 !important; font-size: {{ priceDistributionTextFontSize }}px !important;">
+            <td width="auto" style="background-color: {{ settings.color_body_bg }};"></td>
+            <td class="priceTableDataBlockSpacer" width="{% if distributeWidthEvenly %}25{% else %}{{ priceFirstBlockPercentage }}{% endif %}%" style="background-color: {{ priceTableBorderContentBackground }}; {% if priceTableBorderBottom %}border-bottom: {{ priceTableBorderThickness }}px solid {{ priceFirstBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceFirstBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceFirstBlockColor }}{% endif %};">{{ priceFirstBlockText }}</td>
+            <td class="priceTableDataBlockRaw"></td>
+  
+            <td class="priceTableDataBlockSpacer" width="{% if distributeWidthEvenly %}25{% else %}{{ priceSecondBlockPercentage }}{% endif %}%" style="background-color: {{ priceTableBorderContentBackground }}; {% if priceTableBorderBottom %}border-bottom: {{ priceTableBorderThickness }}px solid {{ priceSecondBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceSecondBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceSecondBlockColor }}{% endif %};">{{ priceSecondBlockText }}</td>
+            <td class="priceTableDataBlockRaw"></td>
+  
+            <td class="priceTableDataBlockSpacer" width="{% if distributeWidthEvenly %}25{% else %}{{ priceThirdBlockPercentage }}{% endif %}%" style="background-color: {{ priceTableBorderContentBackground }}; {% if priceTableBorderBottom %}border-bottom: {{ priceTableBorderThickness }}px solid {{ priceThirdBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceThirdBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceThirdBlockColor }}{% endif %};">{{ priceThirdBlockText }}</td>
+            <td class="priceTableDataBlockRaw"></td>
+  
+            <td class="priceTableDataBlockSpacer" width="{% if distributeWidthEvenly %}25{% else %}{{ priceFourthBlockPercentage }}{% endif %}%" style="background-color: {{ priceTableBorderContentBackground }}; {% if priceTableBorderBottom %}border-bottom: {{ priceTableBorderThickness }}px solid {{ priceFourthBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceFourthBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceFourthBlockColor }}{% endif %};">{{ priceFourthBlockText }}</td>
+            <td width="auto" style="background-color: {{ settings.color_body_bg }};"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  {% if priceTableBreakMobile %}
+  </div>
+  {% endif %}
+
+  {% if priceTableBreakMobile %}
+    <div id="price-mobile-table">
+      <div style="display: flex; justify-content: center;">
+        <table class="table-no-border-mot-price-dist priceTableWidth" style="align-self: center; table-layout: fixed;">
+          <tbody>
+            <tr style="font-size: {{ priceDistributionTitleFontSize }}px !important;">
+              <td width="auto" style="background-color: {{ settings.color_body_bg }};"></td>
+              <td class="priceTableDataBlockSpacer" width="50%" style="background-color: {{ priceFirstBlockColor }}; {% if priceTableBorderTop %}border-top: {{ priceTableBorderThickness }}px solid {{ priceFirstBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceFirstBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceFirstBlockColor }}{% endif %};">{{ priceFirstBlockPercentage }}%</td>
+              <td class="priceTableDataBlockRaw"></td>
+    
+              <td class="priceTableDataBlockSpacer" width="50%" style="background-color: {{ priceSecondBlockColor }}; {% if priceTableBorderTop %}border-top: {{ priceTableBorderThickness }}px solid {{ priceSecondBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceSecondBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceSecondBlockColor }}{% endif %};">{{ priceSecondBlockPercentage }}%</td>
+              <td width="auto" style="background-color: {{ settings.color_body_bg }};"></td>
+            </tr>
+            <tr style="font-weight: 300 !important; font-size: {{ priceDistributionTextFontSize }}px !important;">
+              <td width="auto" style="background-color: {{ settings.color_body_bg }};"></td>
+              <td class="priceTableDataBlockSpacer" width="50%" style="background-color: {{ priceTableBorderContentBackground }}; {% if priceTableBorderBottom %}border-bottom: {{ priceTableBorderThickness }}px solid {{ priceFirstBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceFirstBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceFirstBlockColor }}{% endif %};">{{ priceFirstBlockText }}</td>
+              <td class="priceTableDataBlockRaw"></td>
+    
+              <td class="priceTableDataBlockSpacer" width="50%" style="background-color: {{ priceTableBorderContentBackground }}; {% if priceTableBorderBottom %}border-bottom: {{ priceTableBorderThickness }}px solid {{ priceSecondBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceSecondBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceSecondBlockColor }}{% endif %};">{{ priceSecondBlockText }}</td>
+              <td width="auto" style="background-color: {{ settings.color_body_bg }};"></td>
+            </tr>
+    
+            <tr height="4px" style="background-color: {{ settings.color_body_bg }};"></tr>
+    
+            <tr style="font-size: {{ priceDistributionTitleFontSize }}px !important;">
+              <td width="auto" style="background-color: {{ settings.color_body_bg }};"></td>
+              <td class="priceTableDataBlockSpacer" width="50%" style="background-color: {{ priceThirdBlockColor }}; {% if priceTableBorderTop %}border-top: {{ priceTableBorderThickness }}px solid {{ priceThirdBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceThirdBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceThirdBlockColor }}{% endif %};">{{ priceThirdBlockPercentage }}%</td>
+              <td class="priceTableDataBlockRaw"></td>
+    
+              <td class="priceTableDataBlockSpacer" width="50%" style="background-color: {{ priceFourthBlockColor }}; {% if priceTableBorderTop %}border-top: {{ priceTableBorderThickness }}px solid {{ priceFourthBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceFourthBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceFourthBlockColor }}{% endif %};">{{ priceFourthBlockPercentage }}%</td>
+              <td width="auto" style="background-color: {{ settings.color_body_bg }};"></td>
+            </tr>
+            <tr style="font-weight: 300 !important; font-size: {{ priceDistributionTextFontSize }}px !important;">
+              <td width="auto" style="background-color: {{ settings.color_body_bg }};"></td>
+              <td class="priceTableDataBlockSpacer" width="50%" style="background-color: {{ priceTableBorderContentBackground }}; {% if priceTableBorderBottom %}border-bottom: {{ priceTableBorderThickness }}px solid {{ priceThirdBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceThirdBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceThirdBlockColor }}{% endif %};">{{ priceThirdBlockText }}</td>
+              <td class="priceTableDataBlockRaw"></td>
+    
+              <td class="priceTableDataBlockSpacer" width="50%" style="background-color: {{ priceTableBorderContentBackground }}; {% if priceTableBorderBottom %}border-bottom: {{ priceTableBorderThickness }}px solid {{ priceFourthBlockColor }} {% endif %}; {% if priceTableBorderLeft %}border-left: {{ priceTableBorderThickness }}px solid {{ priceFourthBlockColor }}{% endif %}; {% if priceTableBorderRight %}border-right: {{ priceTableBorderThickness }}px solid {{ priceFourthBlockColor }}{% endif %};">{{ priceFourthBlockText }}</td>
+              <td width="auto" style="background-color: {{ settings.color_body_bg }};"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {% endif %}
+
+  <div style="margin-bottom: {{ priceDistToBottom }}px !important"></div>
+</div>
+
+
+<script type="text/javascript">
+  function JumpToAnchor() {
+    var el = document.getElementById("priceDist");
+    
+    if (el && el.parentElement && el.parentElement.parentElement && el.parentElement.parentElement.previousElementSibling) {
+      el.parentElement.parentElement.previousElementSibling.click();
+    }
+  }
+</script>

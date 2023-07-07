@@ -1,0 +1,372 @@
+{% if settings.cart_type == 'drawer' %}
+  <div id="CartDrawer" class="drawer drawer--right" style="margin-top: -1px;">
+    {% assign motItemCount = 0 %}
+    {% assign motTreeCount = 0 %}
+    {% assign qtySum = 0 %}
+	{% assign discPerc = 0 %}
+    
+    {%- liquid
+      assign upsellProducts = collections[settings.mot_cart_upsell_collection].products
+      assign breakLoop = false
+    
+      for it in cart.items
+        assign motItemCount = motItemCount | plus: it.quantity
+
+        if settings.mot_cart_upsell_show == true and settings.mot_cart_upsell_exclude_from_discounts == true
+          for prod in upsellProducts
+            if breakLoop
+              break
+            endif
+         
+            for var in prod.variants
+              if it.id == var.id
+                assign qtySum = qtySum | plus: it.quantity 
+      
+                assign breakLoop = true
+                break
+              endif
+            endfor
+          endfor
+         
+          assign breakLoop = false
+        endif
+      endfor
+    -%}
+
+    {% assign motTreeCount = motItemCount %}
+
+    {%- liquid
+      assign filterWord = settings.filter_word_plant_trees | upcase
+       
+      if settings.show_plant_trees == true and filterWord != blank
+        assign motTreeCount = 0
+       
+        for it in cart.items
+          assign title = it.title | upcase
+       
+          if title contains filterWord
+            assign motTreeCount = motTreeCount | plus: it.quantity
+          endif
+        endfor
+      endif
+    -%}
+
+    {% assign motItemCount = motTreeCount | minus: qtySum %}
+	
+    {% if settings.apply_bundle_discounts %}
+      {% assign discountx2 = settings.discount_value_1 %}
+      {% assign discountx3 = settings.discount_value_2 %}
+      {% assign discountx4 = settings.discount_value_3 %}
+    {% endif %}
+
+    <form id="CartDrawerForm" action="{{ routes.cart_url }}" method="post" novalidate class="drawer__contents">
+      <div class="drawer__fixed-header">
+        <div class="drawer__header appear-animation appear-delay-1">
+          <div class="drawer__title appear-delay-3">{{ 'cart.general.title' | t }}</div>
+          <div class="drawer__close">
+            <button type="button" class="drawer__close-button js-drawer-close">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 64 64"><path fill="currentColor" d="M19 17.61l27.12 27.13m0-27.12L19 44.74"/></svg>
+              <span class="icon__fallback-text appear-delay-3">{{ 'cart.general.close_cart' | t }}</span>
+            </button>
+          </div>
+        </div> 
+
+        
+  
+		{% if settings.apply_bundle_discounts %}
+          <div id="motSavingsDrawer" class="appear-animation appear-delay-3" style="display: block; width: 100%; text-align: left; line-height: 1.5; font-size: 16px; padding-bottom: 0 !important; margin-bottom: 0 !important;">
+            {% if motItemCount == 1 %}
+              {{ settings.cart_upsell_title_1 }}
+              <div style="padding-top: 3px; font-size: 15px; font-weight: 300 !important; letter-spacing: 0 !important;">
+                {{ settings.cart_upsell_label_1 }}
+              </div>
+
+              <table class="table-no-border-mot4" style="background-color: rgba(0, 0, 0, 0.0) !important; border-spacing: 0 !important; width: 100%; text-align: center; margin-top: 10px;">
+                <tr>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-blue w3-round-large">0%</div>
+                  </td>
+                  <td style="width: 1%; line-height: 0;">
+                    &nbsp;
+                  </td>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-light-grey w3-round-large">{{ discountx2 }}%</div>
+                  </td>
+                  <td style="width: 1%; line-height: 0;">
+                    &nbsp;
+                  </td>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-light-grey w3-round-large">{{ discountx3 }}%</div>
+                  </td>
+                  <td style="width: 1%; line-height: 0;">
+                    &nbsp;
+                  </td>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-light-grey w3-round-large">{{ discountx4 }}%</div>
+                  </td>
+                </tr>
+              </table>
+            {% elsif motItemCount == 2 %}
+              {{ settings.cart_upsell_title_2 }}
+              <div style="padding-top: 3px; font-size: 15px; font-weight: 300 !important; letter-spacing: 0 !important;">
+                {{ settings.cart_upsell_label_2 }}
+              </div>
+
+              <table class="table-no-border-mot4" style="background-color: rgba(0, 0, 0, 0.0) !important; border-spacing: 0 !important; width: 100%; text-align: center; margin-top: 10px;">
+                <tr>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-blue w3-round-large"></div>
+                  </td>
+                  <td style="width: 1%; line-height: 0;">
+                    &nbsp;
+                  </td>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-blue w3-round-large">{{ discountx2 }}%</div>
+                  </td>
+                  <td style="width: 1%; line-height: 0;">
+                    &nbsp;
+                  </td>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-light-grey w3-round-large">{{ discountx3 }}%</div>
+                  </td>
+                  <td style="width: 1%; line-height: 0;">
+                    &nbsp;
+                  </td>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-light-grey w3-round-large">{{ discountx4 }}%</div>
+                  </td>
+                </tr>
+              </table>
+            {% elsif motItemCount == 3 %}
+              {{ settings.cart_upsell_title_3 }}
+              <div style="padding-top: 3px; font-size: 15px; font-weight: 300 !important; letter-spacing: 0 !important;">
+                {{ settings.cart_upsell_label_3 }}
+              </div>
+
+              <table class="table-no-border-mot4" style="background-color: rgba(0, 0, 0, 0.0) !important; border-spacing: 0 !important; width: 100%; text-align: center; margin-top: 10px;">
+                <tr>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-blue w3-round-large"></div>
+                  </td>
+                  <td style="width: 1%; line-height: 0;">
+                    &nbsp;
+                  </td>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-blue w3-round-large"></div>
+                  </td>
+                  <td style="width: 1%; line-height: 0;">
+                    &nbsp;
+                  </td>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-blue w3-round-large">{{ discountx3 }}%</div>
+                  </td>
+                  <td style="width: 1%; line-height: 0;">
+                    &nbsp;
+                  </td>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-light-grey w3-round-large">{{ discountx4 }}%</div>
+                  </td>
+                </tr>
+              </table>
+            {% elsif motItemCount >= 4 %}
+              {{ settings.cart_upsell_title_4 }}
+              <div style="padding-top: 3px; font-size: 15px; font-weight: 300 !important; letter-spacing: 0 !important;">
+                {{ settings.cart_upsell_label_4 }}
+              </div>
+
+              <table class="table-no-border-mot4" style="background-color: rgba(0, 0, 0, 0.0) !important; border-spacing: 0 !important; width: 100%; text-align: center; margin-top: 10px;">
+                <tr>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-blue w3-round-large"></div>
+                  </td>
+                  <td style="width: 1%; line-height: 0;">
+                    &nbsp;
+                  </td>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-blue w3-round-large"></div>
+                  </td>
+                  <td style="width: 1%; line-height: 0;">
+                    &nbsp;
+                  </td>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-blue w3-round-large"></div>
+                  </td>
+                  <td style="width: 1%; line-height: 0;">
+                    &nbsp;
+                  </td>
+                  <td style="width: 24%">
+                    <div class="w3-container w3-blue w3-round-large">{{ discountx4 }}%</div>
+                  </td>
+                </tr>
+              </table>
+            {% endif %}
+          </div>
+
+          <div class="appear-animation appear-delay-3 motDividerDivATC"><hr style="padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0;"></div>
+        {% elsif settings.apply_bundle_discounts == false and settings.cart_none_upsell_title != blank and settings.cart_none_upsell_label != blank %}
+          <div id="motSavingsDrawer" class="appear-animation appear-delay-3" style="display: block; width: 100%; text-align: left; line-height: 1.5; font-size: 16px; padding-bottom: 0 !important; margin-bottom: 0 !important;">
+              {% if cart.item_count > 0 %}
+                <span style="color: {{ settings.cart_none_upsell_title_color }}; letter-spacing: 0 !important;">{{ settings.cart_none_upsell_title }} HERE</span>
+                <div style="padding-top: 3px; font-size: 15px; font-weight: 300 !important; letter-spacing: 0 !important;">
+                  {{ settings.cart_none_upsell_label }}
+                </div>
+              {% endif %}
+          </div>
+
+          <div class="appear-animation appear-delay-3 motDividerDivATC"><hr style="padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0;"></div>
+        {% endif %}
+      </div>
+	  
+	  {% if cart.total_discount > 0 %}
+        {% assign temp11 = cart.total_price | times: 1.0 %}
+        {% assign temp12 = cart.original_total_price | times: 1.0 %}
+		{% assign temp1 = temp11 | divided_by: temp12 %}
+		{% assign temp2 = 1.0 | minus: temp1 %}
+		{% assign temp3 = 100.0 | times: temp2 %}
+		{% assign discPerc = temp3 | round %}
+	  {% endif %}
+	  
+      <div class="drawer__inner">
+        <div class="drawer__scrollable">
+          <div data-products class="appear-animation appear-delay-2">
+          </div>
+          
+          {% if settings.cart_notes_enable %}
+            <div class="appear-animation appear-delay-3">
+              <label for="CartNoteDrawer">{{ 'cart.general.note' | t }}</label>
+              <textarea name="note" class="input-full cart-notes" id="CartNoteDrawer">{{ cart.note }}</textarea>
+            </div>
+          {% endif %}
+            <p class="cart-timer">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_4_287)">
+                    <path d="M8 0C9.58225 0 11.129 0.469192 12.4446 1.34824C13.7602 2.22729 14.7855 3.47672 15.391 4.93853C15.9965 6.40034 16.155 8.00887 15.8463 9.56072C15.5376 11.1126 14.7757 12.538 13.6569 13.6569C12.538 14.7757 11.1126 15.5376 9.56072 15.8463C8.00887 16.155 6.40034 15.9965 4.93853 15.391C3.47672 14.7855 2.22729 13.7602 1.34824 12.4446C0.469192 11.129 0 9.58225 0 8C0 5.87827 0.842855 3.84344 2.34315 2.34315C3.84344 0.842855 5.87827 0 8 0V0ZM8 14.6667C9.76811 14.6667 11.4638 13.9643 12.714 12.714C13.9643 11.4638 14.6667 9.76811 14.6667 8H12.1267C12.0512 7.66902 11.8658 7.37342 11.6006 7.16151C11.3354 6.94959 11.0061 6.8339 10.6667 6.83333H9.16667V4C9.16279 3.66366 9.04549 3.33847 8.83374 3.07712C8.622 2.81577 8.32822 2.63356 8 2.56V1.33333C6.23189 1.33333 4.5362 2.03571 3.28595 3.28595C2.03571 4.5362 1.33333 6.23189 1.33333 8C1.33333 9.76811 2.03571 11.4638 3.28595 12.714C4.5362 13.9643 6.23189 14.6667 8 14.6667V14.6667Z" fill="#FFA1BB"></path>
+                    <path d="M11.1667 8.33333C11.165 8.4654 11.1117 8.59158 11.0183 8.68498C10.9249 8.77837 10.7988 8.83161 10.6667 8.83333H7.66669C7.53462 8.83161 7.40844 8.77837 7.31504 8.68498C7.22165 8.59158 7.16841 8.4654 7.16669 8.33333V4C7.16669 3.86739 7.21937 3.74021 7.31313 3.64645C7.4069 3.55268 7.53408 3.5 7.66669 3.5C7.7993 3.5 7.92647 3.55268 8.02024 3.64645C8.11401 3.74021 8.16669 3.86739 8.16669 4V7.81333H10.6667C10.7338 7.81419 10.8001 7.82838 10.8617 7.85506C10.9232 7.88175 10.9789 7.9204 11.0254 7.96878C11.0719 8.01716 11.1084 8.0743 11.1326 8.13688C11.1569 8.19946 11.1685 8.26624 11.1667 8.33333Z" fill="#FFA1BB"></path>
+                </g>
+                <defs>
+                    <clipPath id="clip0_4_287">
+                        <rect width="16" height="16" fill="white"></rect>
+                    </clipPath>
+                </defs>
+              </svg>
+              <span class="cart-timer-text">Deine Artikel werden im Warenkorb nicht reserviert</span>
+          </p>
+        </div>
+
+        <div class="drawer__footer">
+  
+          <div class="appear-animation appear-delay-4" style="padding-top: 8px; padding-bottom: 8px; font-size:13px; color: #FF1B00; text-align:center; background-color: #FFF0F2; border: 1px solid #FFA1BB; margin-bottom: 10px; border-radius: 4px;">
+            Nur noch wenige auf Lager!
+          </div>
+  
+		  <div id="motSumsDrawer" class="appear-animation appear-delay-4">
+            <div class="cart__item-sub cart__item-row">
+              <div class="cart__subtotal">
+                Zwischensumme
+              </div>
+              <div class="data-subtotal">
+                {{ cart.original_total_price | money }}
+              </div>
+            </div>
+
+            {% if cart.total_discount > 0 %}
+            <div class="cart__item-sub cart__item-row">
+              <div class="cart__subtotal">
+                Du sparst ({{ discPerc }}%)
+              </div>
+              <div class="data-subtotal">
+                -{{ cart.total_discount | money }}
+              </div>
+            </div>
+            {% endif %}
+
+			{% if settings.shipping_free_shipping %}
+				<div class="cart__item-sub cart__item-row">
+				  <div class="cart__subtotal">
+					Versand
+				  </div>
+				  <div class="data-subtotal">
+					Kostenlos
+				  </div>
+				</div>
+			{% endif %}
+
+            <div style="border-top: 1px dashed #BFBDBD; margin-top: 10px; padding-bottom: 10px;"></div>
+
+            <div class="cart__item-sub cart__item-row">
+              <div class="cart__subtotal" style="font-weight: normal !important;">
+                Gesamtsumme
+              </div>
+              <div class="data-subtotal" style="font-weight: normal !important;">
+                {{ cart.total_price | money }}
+              </div>
+            </div>
+
+            {%  if settings.show_plant_trees %}
+              <div style="margin-top: 12px;">
+                <table class="table-no-border-mot4" style="background-color: rgba(0, 0, 0, 0.0) !important; border-spacing: 0 !important; width: auto; margin-left: auto; margin-right: auto;">
+                  <tr>
+                    <td style="height: 21px; width: 21px;"><img class="lazyload" src="https://cdn.shopify.com/s/files/1/0599/7648/2966/files/PlantTreeIcon3.svg?v=1645273543" /></td>
+                    <td style="padding-left: 8px !important; padding-top: 1px !important; font-size: 14px; font-weight: 300;">Mit deinem Kauf pflanzt du {{ motTreeCount }} {% if motTreeCount == 1 %}Baum{% else %}Bäume{% endif %}</td>
+                  </tr>
+                </table>
+              </div>
+            {% else %}
+              <div style="margin-top: 22px;"></div>
+            {% endif %}
+          </div>
+
+          <div class="cart__checkout-wrapper">
+            <button id="motCheckoutBtnDrawer" type="submit" name="checkout" data-terms-required="{{ settings.cart_terms_conditions_enable }}" class="btn cart__checkout">
+              <div id="motCheckoutBtnDrawerText" style="display: table-row; text-align: center;">
+                <div style="display: table-cell; vertical-align: middle;">
+                    <svg aria-hidden="true" focusable="false" role="presentation" style="margin-right: 6px;" class="icon icon-lock-mot" viewBox="0 0 64 64"><path class="a" d="M19.45 23.6v-3.2c0-7 5.89-11.75 12.55-11.75 7.21 0 12.55 5.49 12.55 11.75v3.2M10 23.6h44v31.75H10zM32 37.47v7.47"/><circle class="a" cx="32" cy="35.87" r="1.6"/></svg>
+                </div>
+                <div style="display: table-cell; vertical-align: middle; padding-top: 1px;">      
+                  <span >
+                    {{ 'cart.general.checkout' | t }}
+                  </span>
+                </div>
+              </div>
+            </button>
+            
+            {% if settings.show_payment_badges %}  
+      		  {% if settings.show_payment_badges_border %}
+                <fieldset class="payment-fieldset">
+                  <legend class="payment-fieldset-legend">{{ settings.payment_badges_title }}</legend>
+              {% endif %}  
+                  <div id="mot-satc-payment-badges" style="text-align: center; padding-top: 10px !important;">
+                    <div style="display:flex;justify-content:center;">
+                      {% if settings.payment_badges_show_amazon %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'amazon_payments' | payment_type_img_url }}" alt="amazon payments" />{% endif %}
+                      {% if settings.payment_badges_show_amex %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'american_express' | payment_type_img_url }}" alt="american_express" />{% endif %}
+                      {% if settings.payment_badges_show_apple %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'apple_pay' | payment_type_img_url }}" alt="apple pay" />{% endif %}
+                      {% if settings.payment_badges_show_google %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'google_pay' | payment_type_img_url }}" alt="google pay" />{% endif %}
+                      {% if settings.payment_badges_show_klarna %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'klarna' | payment_type_img_url }}" alt="klarna" />{% endif %}
+                      {% if settings.payment_badges_show_maestro %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'maestro' | payment_type_img_url }}" alt="maestro" />{% endif %}
+                      {% if settings.payment_badges_show_master %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'master' | payment_type_img_url }}" alt="master" />{% endif %}
+                      {% if settings.payment_badges_show_paypal %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'paypal' | payment_type_img_url }}" alt="paypal" />{% endif %}
+                      {% if settings.payment_badges_show_sofort %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'sofort' | payment_type_img_url }}" alt="sofort" />{% endif %}
+                      {% if settings.payment_badges_show_twint %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'twint' | payment_type_img_url }}" alt="twint" />{% endif %}
+                      {% if settings.payment_badges_show_visa %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'visa' | payment_type_img_url }}" alt="visa" />{% endif %}
+                    </div>
+                  </div>
+              {% if settings.show_payment_badges_border %}
+                </fieldset>
+              {% endif %}
+            {% endif %}
+
+            {% if additional_checkout_buttons and settings.cart_additional_buttons %}
+              <div class="additional-checkout-buttons additional-checkout-buttons--vertical">{{ content_for_additional_checkout_buttons }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer__cart-empty appear-animation appear-delay-2">
+        <div class="drawer__scrollable" style="font-size: 16px; text-align: center;">
+          {{ 'cart.general.empty' | t }}
+        </div>
+      </div>
+    </form>
+  </div>
+{% endif %}

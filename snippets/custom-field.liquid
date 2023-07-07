@@ -1,0 +1,21 @@
+<div class="line-item-property__field">
+  {%- liquid
+    assign slices = pickerFieldText | split: " "
+    assign word2 = ""
+    assign pickerFieldId = ""
+ 
+    for word in slices
+      if word != slices.first
+        assign word2 = word | strip | prepend: "-"
+        assign pickerFieldId = pickerFieldId | append: word2
+      else
+        assign pickerFieldId = pickerFieldId | append: word
+      endif
+    endfor
+
+    assign pickerFieldId = pickerFieldId | downcase
+  -%}
+
+  <label class="variant__label" for="{{ pickerFieldId }}">{{ pickerFieldText }}{% if pickerFieldRequired %}*{% endif %}</label>
+  <textarea {% if pickerFieldfieldResizable %}rows="1"{% endif %} class="customFieldPicker" form="{{ form_id }}" {% if pickerFieldRequired %}required class="required"{% endif %} id="{{ pickerFieldId }}" type="text" name="properties[{{ pickerFieldText | split: " " | first }}]" style="width: 100%; resize: vertical; min-height: {{ pickerFieldMinHeight }}px;"></textarea>
+</div>

@@ -1,0 +1,162 @@
+{% if settings.apply_bundle_discounts %}
+  {% assign discount_percent_2 = settings.discount_value_1 %}
+  {% assign discount_percent_3 = settings.discount_value_2 %}
+  {% assign discount_percent_4 = settings.discount_value_3 %}
+
+  {% assign discount_2 = discount_percent_2 | divided_by: 100.0 %}
+  {% assign discount_3 = discount_percent_3 | divided_by: 100.0 %}
+  {% assign discount_4 = discount_percent_4 | divided_by: 100.0 %}
+
+  {% assign bundleSavingMot = 0 %}
+  {% assign bundleSavingCompareMot = 0 %}
+  
+  <div id="Product-content-{{ id }}">
+    <div style="margin-top: {{ discountDistToTop }}px !important"></div>
+  
+    <div id="mot-satc-bundle-discounts" style="padding-top: 0px; padding-bottom: 0px;">
+      {% if showPaymentBadgesBorder %}
+      <fieldset id="mot-satc-payment-badges-fieldset" class="payment-fieldset" style="margin: 10px auto 5px auto !important;">
+        <legend class="payment-fieldset-legend">{{ discountTitle }}</legend>
+      {% endif %}
+        <div class="flexMot" style="padding-left: 6px; padding-top: 7px;">
+          <input id="radio1" type="radio" name="atcBundleName" checked disabled onclick="atcBundle(this, 1)" style="margin-top: -2px !important;" />
+          <label for="radio1" style="margin-bottom: 4px !important;">
+            <table class="table-no-border-mot2" style="border-spacing: 0 !important; margin-left: -2px;">
+              <tr>
+                <td>
+                  <span class="inputTextMot" style="padding-left: 0;">{{ discountPrefix1 }}:&nbsp;</span>
+                </td>
+                <td>
+                  <span id="variantPrice0" class="inputTextMot discountPriceActive" style="color: #646363;">{{  currentPrice | money }}</span>
+                  <span id="variantPrice0_" class="inputTextMot" style="color: #a3a3a3; text-decoration: line-through; padding-left: 1px;">
+                    {% if compareAt and compareAt >  currentPrice %}
+                        {{ compareAt | money }}
+                    {% endif %}
+                  </span>
+                  <span id="variantPrice0__" class="inputTextMot{% if applySummarizedPrice %} hideVariantPricePiece{% endif %}" style="color: #a3a3a3;">&nbsp;/&nbsp;Stk.</span>
+                </td>
+                <td>
+                </td>
+              </tr>
+            </table>
+          </label>
+        </div>
+
+        <div class="flexMot" style="padding-left: 6px;">
+          <input id="radio2" type="radio" name="atcBundleName" onclick="atcBundle(this, 2)" style="margin-top: -2px !important;" />
+          <label for="radio2" style="margin-bottom: 4px !important;">
+            <table class="table-no-border-mot2" style="border-spacing: 0 !important; margin-left: -2px;">
+              <tr>
+                <td>
+                  <span class="inputTextMot" style="padding-left: 0;">{{ discountPrefix2 }}:&nbsp;</span>
+                </td>
+                <td>
+                  {% if applySummarizedPrice == true %}
+                    {% assign bundleSavingMot =  currentPrice | times: 2.0 | times: discount_2 %}
+
+                    <span id="variantPrice1" class="inputTextMot" style="color: #646363;">{{ currentPrice | times: 2.0 | minus: bundleSavingMot | ceil | money }}</span>
+
+                    <span id="variantPrice1_" class="inputTextMot" style="color: #a3a3a3; text-decoration: line-through; padding-left: 1px;">
+                      {{  currentPrice | times: 2 | money }}
+                    </span>
+                  {% else %}
+                    {% assign bundleSavingMot = 1.0 | minus: discount_2 %}
+
+                    <span id="variantPrice1" class="inputTextMot" style="color: #646363;">{{  currentPrice | times: bundleSavingMot | ceil | money }}</span>
+
+                    <span id="variantPrice1_" class="inputTextMot" style="color: #a3a3a3; text-decoration: line-through; padding-left: 1px;">
+                      {{  currentPrice | money }}
+                    </span>
+
+                    <span id="variantPrice1__" class="inputTextMot{% if applySummarizedPrice %} hideVariantPricePiece{% endif %}" style="color: #a3a3a3;">&nbsp;/&nbsp;Stk.</span>
+                  {% endif %}
+                </td>
+                <td>
+                  <div id="discountBadge1" class="discountBadge">{{ discount_percent_2 }}%&nbsp;RABATT</div>
+                </td>
+              </tr>
+            </table>
+          </label>
+        </div>
+
+        <div class="flexMot" style="padding-left: 6px;">
+          <input id="radio3" type="radio" name="atcBundleName" onclick="atcBundle(this, 3)" style="margin-top: -2px !important;" />
+          <label for="radio3" style="margin-bottom: 4px !important;">
+            <table class="table-no-border-mot2" style="border-spacing: 0 !important; margin-left: -2px; cell-spacing: 0 !important;">
+              <tr>
+                <td>
+                  <span class="inputTextMot" style="padding-left: 0;">{{ discountPrefix3 }}:&nbsp;</span>
+                </td>
+                <td>
+                  {% if applySummarizedPrice == true %}
+                    {% assign bundleSavingMot =  currentPrice | times: 3.0 | times: discount_3 %}
+
+                    <span id="variantPrice2" class="inputTextMot" style="color: #646363;">{{ currentPrice | times: 3.0 | minus: bundleSavingMot | ceil | money }}</span>
+
+                    <span id="variantPrice2_" class="inputTextMot" style="color: #a3a3a3; text-decoration: line-through; padding-left: 1px;">
+                      {{  currentPrice | times: 3 | money }}
+                    </span>
+                  {% else %}
+                    {% assign bundleSavingMot = 1.0 | minus: discount_3 %}
+
+                    <span id="variantPrice2" class="inputTextMot" style="color: #646363;">{{ currentPrice | times: bundleSavingMot | ceil | money }}</span>
+
+                    <span id="variantPrice2_" class="inputTextMot" style="color: #a3a3a3; text-decoration: line-through; padding-left: 1px;">
+                      {{  currentPrice | money }}
+                    </span>
+
+                    <span id="variantPrice2__" class="inputTextMot{% if applySummarizedPrice %} hideVariantPricePiece{% endif %}" style="color: #a3a3a3;">&nbsp;/&nbsp;Stk.</span>
+                  {% endif %}
+                </td>
+                <td>
+                  <div id="discountBadge2" class="discountBadge">{{ discount_percent_3 }}%&nbsp;RABATT</div>
+                </td>
+              </tr>
+            </table>
+          </label>
+        </div>
+
+        <div class="flexMot" style="padding-left: 6px; padding-bottom: 3px;">
+          <input id="radio4" type="radio" name="atcBundleName" onclick="atcBundle(this, 4)" style="margin-top: -2px !important;" />
+          <label for="radio4" style="margin-bottom: 4px !important;">
+            <table class="table-no-border-mot2" style="border-spacing: 0 !important; margin-left: -2px; cell-spacing: 0 !important;">
+              <tr>
+                <td>
+                  <span class="inputTextMot" style="padding-left: 0;">{{ discountPrefix4 }}:&nbsp;</span>
+                </td>
+                <td>
+                  {% if applySummarizedPrice == true %}
+                    {% assign bundleSavingMot =  currentPrice | times: 4.0 | times: discount_4 %}
+
+                    <span id="variantPrice3" class="inputTextMot" style="color: #646363;">{{ currentPrice | times: 4.0 | minus: bundleSavingMot | ceil | money }}</span>
+
+                    <span id="variantPrice3_" class="inputTextMot" style="color: #a3a3a3; text-decoration: line-through; padding-left: 1px;">
+                      {{  currentPrice | times: 4 | money }}
+                    </span>
+                  {% else %}
+                    {% assign bundleSavingMot = 1.0 | minus: discount_4 %}
+
+                    <span id="variantPrice3" class="inputTextMot" style="color: #646363;">{{ currentPrice | times: bundleSavingMot | ceil | money }}</span>
+
+                    <span id="variantPrice3_" class="inputTextMot" style="color: #a3a3a3; text-decoration: line-through; padding-left: 1px;">
+                      {{  currentPrice | money }}
+                    </span>
+
+                    <span id="variantPrice3__" class="inputTextMot{% if applySummarizedPrice %} hideVariantPricePiece{% endif %}" style="color: #a3a3a3;">&nbsp;/&nbsp;Stk.</span>
+                  {% endif %}
+                </td>
+                <td>
+                  <div id="discountBadge3" class="discountBadge">{{ discount_percent_4 }}%&nbsp;RABATT</div>
+                </td>
+              </tr>
+            </table>
+          </label>
+        </div>
+        {% if showPaymentBadgesBorder %}
+      </fieldset>
+        {% endif %}
+    </div>
+
+    <div style="margin-bottom: {{ discountDistToBottom }}px !important"></div>
+  </div>
+{% endif %}

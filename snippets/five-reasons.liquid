@@ -1,0 +1,71 @@
+<div id="Product-content-{{ id }}">
+  <div style="margin-top: {{ fiveReasonsDistToTop }}px !important"></div>
+  
+  {% if fiveReasonsTopDivider %}
+    <div id="mot-satc-separator1" style="border-bottom: 1px solid; border-bottom-color: {{ settings.color_borders }}; width: 100%; margin-top: 20px; margin-bottom: 20px;"></div>
+  {% endif %}
+
+  <div id="mot-satc-five-reasons">
+      <span class="label" style="padding-bottom: 2px; text-transform: uppercase;">{{ fiveReasonsTitle }}</span>
+      <table class="table-no-border-mot3" style="width:100%; margin-left:auto; margin-right:auto; border-collapse:collapse; background-color: rgba(0, 0, 0, 0.0) !important; margin-top:8px;">
+          <tbody style="background-color: rgba(0, 0, 0, 0.0) !important;">
+              {% if fiveReasonsReason1 != blank %}
+                <tr>
+                    <td style="width: 25px !important;">
+                      <img class="lazyload five-reasons-checkmark" src="{{ fiveReasonsCheckmarkImg }}" alt="{{ shop.name }}" />
+                    </td>
+                    <td class="td_width_mot">
+                      {{ fiveReasonsReason1 }}
+                    </td>
+                </tr>
+              {% endif %}
+              {% if fiveReasonsReason2 != blank %}
+                <tr>
+                    <td style="width: 25px !important;">
+                      <img class="lazyload five-reasons-checkmark" src="{{ fiveReasonsCheckmarkImg }}" alt="{{ shop.name }}" />
+                    </td>
+                    <td class="td_width_mot">
+                      {{ fiveReasonsReason2 }}
+                    </td>
+                </tr>  
+              {% endif %}
+              {% if fiveReasonsReason3 != blank %}
+                <tr>
+                    <td style="width: 25px !important;">
+                      <img class="lazyload five-reasons-checkmark" src="{{ fiveReasonsCheckmarkImg }}" alt="{{ shop.name }}" />
+                    </td>
+                    <td class="td_width_mot">
+                      {{ fiveReasonsReason3 }}
+                    </td>
+                </tr>
+              {% endif %}
+              {% if fiveReasonsReason4 != blank %}
+                <tr>
+                    <td style="width: 25px !important;">
+                      <img class="lazyload five-reasons-checkmark" src="{{ fiveReasonsCheckmarkImg }}" alt="{{ shop.name }}" />
+                    </td>
+                    <td class="td_width_mot">
+                      {{ fiveReasonsReason4 }}
+                    </td>
+                </tr>
+              {% endif %}
+              {% if fiveReasonsReason5 != blank %}
+                <tr>
+                    <td style="width: 25px !important;">
+                      <img class="lazyload five-reasons-checkmark" src="{{ fiveReasonsCheckmarkImg }}" alt="{{ shop.name }}" />
+                    </td>
+                    <td class="td_width_mot">
+                      {{ fiveReasonsReason5 }}
+                    </td>
+                </tr>
+              {% endif %}
+          </tbody>
+      </table>
+  </div>
+
+  {% if fiveReasonsBottomDivider %}
+    <div id="mot-satc-separator2" style="border-bottom: 1px solid; border-bottom-color: {{ settings.color_borders }}; width: 100%; margin-top: 20px; {% if template != 'index' %}margin-bottom: 20px;{% endif %}"></div> 
+  {% endif %}
+
+  <div style="margin-bottom: {{ fiveReasonsDistToBottom }}px !important"></div>
+</div>   

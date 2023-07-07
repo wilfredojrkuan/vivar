@@ -1,0 +1,46 @@
+<script type="text/javascript">
+  var rnpCookie = json_shop_name.replaceAll(/[^a-zA-Z ]/g, "_").replaceAll(" ", "_").toLowerCase() + '_rnp'; // random number product
+  var rnvCookie = json_shop_name.replaceAll(/[^a-zA-Z ]/g, "_").replaceAll(" ", "_").toLowerCase() + '_rnv'; // random number variant
+  var upaCookie = json_shop_name.replaceAll(/[^a-zA-Z ]/g, "_").replaceAll(" ", "_").toLowerCase() + '_upa'; // upsell product added
+  var lopCookie = json_shop_name.replaceAll(/[^a-zA-Z ]/g, "_").replaceAll(" ", "_").toLowerCase() + '_lop'; // last opened page
+
+  function checkCookie(cName, cValue) {
+    let number = -1;
+    let num = getCookie(cName);
+
+    if (num != "") {
+      number = num;
+    } else {
+      setCookie(cName, cValue.toString());
+    }
+
+    return number;
+  }
+  
+  function getCookie(cName) {
+    let name = cName + "=";
+    let ca = document.cookie.split(';');
+    
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    
+    return '-1';
+  }
+  
+  function setCookie(cName, cValue, cHours) {
+    const d = new Date();
+    d.setTime(d.getTime() + Math.round(cHours * 60 * 60 * 1000));
+    
+    let expires = "expires="+d.toUTCString();
+    document.cookie = cName + "=" + cValue + ";" + expires + ";path=/";
+  }  
+</script>

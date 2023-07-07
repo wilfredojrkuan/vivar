@@ -1,0 +1,288 @@
+{% case trustBadgesIcon %}
+  {% when 'checkmarknormal' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %}" viewBox="0 0 350 350">
+    <g transform="translate(0 350) scale(.1 -.1)">
+      <defs>
+        <style>
+          .a {
+            fill: none;
+            stroke: #000;
+            stroke-width: 2px
+          }
+        </style>
+      </defs><path d="m2655 2939c-80-12-143-34-198-69-37-23-68-62-160-202-282-426-520-889-739-1438-38-96-73-181-77-188-5-9-39 30-106 124-207 290-332 427-403 443-108 24-276-35-329-115-15-23-15-28 0-57 8-18 57-77 107-132 150-163 294-348 428-549 148-222 142-218 302-218 171 1 206 19 246 124 150 395 264 658 414 953 182 357 374 682 604 1017 66 97 132 198 145 223l24 47-22 21c-18 18-34 22-99 24-42 1-104-3-137-8z"/></g>
+  </svg>
+  {% when 'checkmark' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %} icon-circle-checkmark" viewBox="0 0 64 64">
+    <defs>
+      <style>
+        .a {
+          fill: none;
+          stroke: #000;
+          stroke-width: 2px
+        }
+      </style>
+    </defs><path class="a" d="M52.68 24.48A22 22 0 1 1 47 15.93M21 32l8.5 8.5L57 13"/></svg>
+  {% when 'discount' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %}" viewBox="0 0 800 800">
+    <g transform="translate(0 800) scale(.1 -.1)">
+      <defs>
+        <style>
+          .a {
+            fill: none;
+            stroke: #000;
+            stroke-width: 2px
+          }
+        </style>
+      </defs><path d="m3170 7923c-14-2-46-11-72-18-27-8-48-12-48-10 0 7-141-45-207-76-148-69-315-207-422-349-96-128-175-302-206-458-32-157-27-390 11-505 18-55 12-55 135 1 67 31 79 40 75 57-60 250 1 550 156 760 129 176 308 297 528 360 98 28 358 27 455-2 152-45 256-100 360-187 225-191 335-427 335-716 0-300-128-555-376-747-101-78-332-173-421-173h-33v-114-114l48 5c71 7 222 48 304 83 346 146 602 459 680 830 26 120 28 318 5 440-16 88-65 236-99 305-76 150-234 333-368 427-205 143-419 209-674 207-77-1-152-4-166-6z"/><path d="m3463 7360c-112-23-244-99-319-184-35-40-451-718-629-1026-38-65-259-432-286-475-94-148-458-764-482-815-65-141-88-303-63-450 8-52 18-113 21-135s12-78 19-125c8-47 22-134 31-195 9-60 25-164 35-230 11-66 26-167 35-225 26-174 45-300 61-395 8-49 17-108 19-130 3-22 11-80 20-130 8-49 21-137 30-195s25-159 35-225 26-166 34-222c9-57 23-149 32-205 8-57 24-157 34-223s26-169 35-230c24-159 41-273 64-415 19-117 26-164 67-440 8-58 22-148 31-200s17-105 19-118c1-13 11-46 21-75 25-74 137-185 213-212 69-25 193-26 340-1 222 37 414 67 645 101 61 9 162 25 225 35s165 26 225 35c168 25 280 42 390 60 55 9 116 18 135 20s76 11 125 19c50 8 135 22 190 30s159 24 230 36c134 21 240 37 430 65 61 9 162 25 225 35s165 26 225 35c462 69 557 87 609 112 64 32 136 101 168 160 30 55 52 162 44 208-4 18-9 54-11 81-3 27-11 87-19 134s-22 135-31 195c-9 61-25 166-36 235-29 189-47 304-64 420-9 58-23 146-31 195-8 50-17 108-19 130-3 22-11 81-19 130-9 50-22 135-30 190-9 55-25 156-36 225-10 69-26 172-35 230s-22 150-31 205c-8 55-21 141-30 190-8 50-17 108-19 130-3 22-12 83-20 135-9 52-22 138-30 190s-23 151-34 220-27 175-36 235c-20 130-39 254-59 385-9 52-18 118-21 145-18 156-87 329-174 432-26 33-106 110-177 173s-131 117-134 120-61 55-130 115-143 126-165 146-125 112-230 204c-104 92-228 202-275 244-161 145-207 182-222 176-9-4-20-38-31-94-33-177-92-321-195-477-61-92-75-109-173-209-58-59-59-62-75-150-9-50-29-115-44-145-35-69-123-153-197-188-52-24-70-27-164-27-100 0-108 2-173 34-80 41-158 120-200 205-27 54-30 67-29 158 1 87 5 106 31 162 74 158 216 246 398 246 87 0 115 16 191 110 93 115 142 224 169 375 25 145 10 297-42 435-46 118-148 206-303 260-68 23-97 28-183 28-57 0-122-4-145-8zm1607-3071c71-35 110-96 110-170 0-50-16-88-200-464-145-294-197-403-330-680-32-66-99-205-150-310-51-104-123-253-160-330s-111-230-164-340c-54-110-139-285-189-390-189-391-220-448-258-478-77-60-204-42-265 38-22 30-29 50-32 99-4 67-14 44 203 491 48 99 118 243 155 320 97 202 196 405 293 605 46 96 123 254 169 350 120 247 222 458 278 575 178 372 311 633 333 653 55 51 141 63 207 31zm-1541-175c224-56 388-209 456-427 66-207 3-447-157-606-247-246-640-239-877 15-106 114-171 272-171 419 0 78 28 192 67 272 51 105 168 225 267 273 141 67 285 86 415 54zm1895-1634c101-29 208-94 280-170 112-120 166-256 166-420 0-168-56-305-170-420-86-86-101-97-184-135-207-95-413-77-607 51-130 86-219 223-254 392-19 95-19 139 4 241 28 123 72 202 166 297 83 85 156 130 265 165 80 25 244 25 334-1z"/><path d="m3308 3830c-86-22-182-111-218-203-59-150 15-328 170-409 37-19 60-23 135-23s98 4 140 24c70 35 116 81 151 148 26 51 29 68 29 148 0 75-4 98-24 140-31 63-93 124-153 154-54 26-170 36-230 21z"/><path d="m5201 2208c-105-16-185-77-237-181-39-76-39-188 0-272 32-70 90-129 161-161 74-35 201-34 272 1 61 31 113 80 149 141 22 37 28 63 32 124 6 103-15 172-69 234-85 97-184 133-308 114z"/></g>
+  </svg>
+  {% when 'feather' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %}" viewBox="0 0 430 430">
+    <g transform="translate(0 430) scale(.1 -.1)">
+      <defs>
+        <style>
+          .a {
+            fill: none;
+            stroke: #000;
+            stroke-width: 2px
+          }
+        </style>
+      </defs><path d="m3443 4195c-107-29-264-120-459-267-105-79-98-58-114-306-5-74-11-137-14-139-7-7-46 104-63 182-9 38-20 74-23 78-9 11-237-200-391-362l-126-132-7-61c-9-88-7-236 4-367 6-63 8-116 6-118-10-11-98 189-117 267-29 118-28 115-39 104-32-32-53-486-31-676 4-38 4-68 1-68-10 0-86 157-104 215-21 65-46 197-46 241 0 21-5 34-12 34-23-1-255-341-366-537-29-50-82-152-117-226l-65-135v-113c0-63 5-165 10-228 6-63 9-116 7-118-6-5-80 111-122 189-19 35-35 61-35 58s-9-52-21-110c-23-120-28-331-10-441 19-113 60-240 111-342l49-97-105-331c-58-182-103-333-100-336 2-3 23 10 46 28 32 26 44 44 56 88 8 31 47 155 85 275 357 1111 1024 2314 1639 2956 86 90 81 81-80-136-345-467-678-1019-965-1599-198-401-344-741-449-1042l-35-103h100c181 0 361 52 516 149 24 14 43 31 43 37s-50 20-111 32c-62 13-116 25-122 29-6 3 52 17 128 30l139 23 49 47c116 113 319 394 439 608 96 169 226 432 298 601l20 47-37-7c-96-17-212-25-257-18l-48 7 83 64c109 84 328 304 406 407 53 70 68 99 112 228 28 81 51 154 51 161 0 10-9 10-42-2-59-20-181-43-231-43h-41l71 48c103 71 221 164 279 219l51 48 47 179c103 384 163 720 140 780-7 19-13 19-81 1z"/></g>
+  </svg>
+  {% when 'feather2' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %}" viewBox="0 0 360 360">
+    <g transform="translate(0 360) scale(.1 -.1)">
+      <defs>
+        <style>
+          .a {
+            fill: none;
+            stroke: #000;
+            stroke-width: 2px
+          }
+        </style>
+      </defs><path d="m375 2593c-142-19-261-93-301-188-36-86-29-295 17-480 60-238 154-372 316-452 52-25 68-28 158-28 87 0 107 4 158 27l57 27-17-24c-37-51-171-91-274-82-42 4-67 2-64-3 3-6 36-31 73-57s69-51 72-55c11-14 156-76 220-94 105-28 280-24 404 10 101 28 193 69 256 113 20 14 8-2-30-39-72-70-211-146-310-169-63-15-73-10 108-53 104-25 289-50 372-50 115-1 369 45 449 80 177 79 261 127 335 193 51 47 117 140 136 194 10 28 19 46 19 40 1-7-9-41-20-75-39-113-116-208-229-283l-55-37 45 7c159 25 321 95 396 172 61 62 90 110 111 184l17 62 17-39c9-22 23-45 31-52 13-11 16-3 20 55 3 38 13 86 23 108l18 40 13-43c12-38 50-112 59-112 1 0-1 18-6 41-12 50-1 90 51 203 37 79 49 126 34 126-4 0-45-23-93-52-164-99-334-170-567-237-267-78-624-91-929-36-77 14-144 27-150 29-5 2-17 6-25 9s-58 18-110 33c-140 40-438 186-520 255-30 25-13 17 55-27 117-74 273-139 515-213 303-93 698-107 1025-37 93 20 315 92 390 126 33 16 92 42 130 60 125 55 355 201 480 303 129 106 295 280 277 291-26 16-78-20-193-136-117-117-274-245-347-282l-32-17-21 48c-38 92-64 135-116 191l-52 57 14-45c16-53 26-140 15-140-3 0-17 23-30 50-31 67-102 132-172 158-63 24-206 42-175 22 73-46 204-199 237-275l20-48-47 54c-134 152-236 225-361 261-77 22-248 34-306 21l-40-9 67-47c74-53 107-91 137-161 32-71 20-75-30-11-49 63-152 150-217 184-40 20-176 63-238 75-17 3-42 8-56 12-22 5-17-4 35-59 101-107 210-312 230-432 5-31-4-17-38 58-94 206-191 312-361 393-89 43-223 84-273 84-22 0-18-6 39-68 122-130 230-319 246-430 4-34 1-30-37 38-99 178-268 381-395 475-22 17-48 37-58 46-26 24-191 104-263 128-106 35-233 48-339 34z"/></g>
+  </svg>
+  {% when 'flake' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %}" viewBox="0 0 24 24">
+    <g transform="translate(0 24) scale(.1 -.1)">
+      <defs>
+        <style>
+          .a {
+            fill: none;
+            stroke: #000;
+            stroke-width: 2px
+          }
+        </style>
+      </defs><path d="m110 198c0-20-1-21-20-3-11 10-20 14-20 8 0-5 9-18 20-28s20-24 20-32c0-19-24-16-45 7-10 11-23 20-28 20-6 0-2-9 8-20 18-19 17-20-3-20-12 0-22-4-22-10 0-5 10-10 22-10 20 0 21-1 3-20-10-11-14-20-8-20 5 0 18 9 28 20s24 20 32 20c19 0 16-24-7-45-11-10-20-23-20-28 0-6 9-2 20 8 19 18 20 17 20-3 0-12 5-22 10-22 6 0 10 10 10 22 0 20 1 21 20 3 11-10 20-14 20-8 0 5-9 18-20 28s-20 24-20 32c0 19 24 16 45-7 10-11 23-20 28-20 6 0 2 9-8 20-18 19-17 20 3 20 12 0 22 5 22 10 0 6-10 10-22 10-20 0-21 1-3 20 10 11 14 20 8 20-5 0-18-9-28-20s-24-20-32-20c-19 0-16 24 7 45 11 10 20 23 20 28 0 6-9 2-20-8-19-18-20-17-20 3 0 12-4 22-10 22-5 0-10-10-10-22z"/></g>
+  </svg>
+  {% when 'gift' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %} icon-gift" viewBox="0 0 64 64">
+    <defs>
+      <style>
+        .a {
+          fill: none;
+          stroke: #000;
+          stroke-width: 2px
+        }
+      </style>
+    </defs><path class="a" d="M9 20.23h46v8.68H9zM13.34 28.91h36.89v24.3H13.34zM27.82 20.66v32.98M35.91 20.88v32.98M20.52 11.43a3.73 3.73 0 0 0-.74 2.87 4.57 4.57 0 0 0 .8 2.27C22 18.09 25.15 20 32 20.23a12 12 0 0 0-2.43-7 7.52 7.52 0 0 0-5.66-3.12 4 4 0 0 0-3.39 1.32z"/><path class="a" d="M43.37 11.43a3.73 3.73 0 0 1 .74 2.87 4.48 4.48 0 0 1-.8 2.27c-1.42 1.52-4.57 3.41-11.42 3.66a12.08 12.08 0 0 1 2.43-7A7.56 7.56 0 0 1 40 10.14a4 4 0 0 1 3.37 1.29z"/></svg>
+  {% when 'globe' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %} icon-globe" viewBox="0 0 64 64">
+    <defs>
+      <style>
+        .a {
+          fill: none;
+          stroke: #000;
+          stroke-width: 2px
+        }
+      </style>
+    </defs><circle class="a" cx="32" cy="32" r="22"/><path class="a" d="M13 21h38M10 32h44M13 43h38M32 10c-12 8-12 37 0 44M32 10c12 8 12 37 0 44"/></svg>
+  {% when 'heart' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %} icon-heart" viewBox="0 0 64 64">
+    <defs>
+      <style>
+        .a {
+          fill: none;
+          stroke: #000;
+          stroke-width: 2px
+        }
+      </style>
+    </defs><path class="a" d="M51.27 15.05a13 13 0 0 0-18.44 0l-.83.83-.83-.83a13 13 0 0 0-18.44 18.44l.83.83L32 52.77l18.44-18.45.83-.83a13 13 0 0 0 0-18.44z"/></svg>
+  {% when 'klarna' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %}" viewBox="0 0 1050 1050">
+    <g transform="translate(0 1050) scale(.1 -.1)"><path d="m917 10284c-4-4-7-461-7-1016v-1008h190 190v273 272l113 55c61 30 115 56 118 58 4 1 102-146 219-328l213-330h229c215 0 228 1 219 18-6 9-136 210-290 446l-279 430 59 65c74 81 168 219 220 322 91 182 157 431 166 632l6 117-184-2-184-3-6-90c-28-389-237-737-550-914-31-17-59-31-62-31-4 0-8 233-9 518l-3 517-181 3c-99 1-183-1-187-4z"/><path d="m2620 9275v-1015h175 175v1015 1015h-175-175v-1015z"/><path d="m6544 9685c-81-17-156-57-215-112l-49-46v67 66h-170-170v-700-700h175 174l3 428 3 427 26 55c51 110 128 159 244 160 148 0 245-87 274-245 7-36 11-208 11-442v-383h176 175l-4 478c-4 528-3 523-73 670-103 214-342 329-580 277z"/><path d="m3730 9674c-107-28-179-72-275-169-73-73-99-106-133-175-64-131-85-236-80-400 4-120 8-146 37-232 96-283 334-468 601-468 133 0 228 34 318 115l52 47v-66-66h170 170l-2 703-3 702-167 3-168 2v-65c0-36-2-65-4-65-3 0-22 16-43 35-48 44-121 84-187 101-66 18-216 17-286-2zm315-383c107-50 177-147 193-270 23-167-51-322-186-388-75-37-191-40-264-6-63 29-134 102-166 171-24 50-27 69-27 162 0 92 3 112 26 160 61 131 163 199 299 200 51 0 78-6 125-29z"/><path d="m5544 9680c-91-19-159-59-205-123l-29-40v71 72h-170-170v-700-700h175 174l3 383 3 382 29 63c46 100 129 158 242 169l54 6-2 211-3 211-30 2c-16 1-48-2-71-7z"/><path d="m7940 9674c-107-28-179-72-275-169-73-73-99-106-133-175-64-131-85-236-80-400 4-120 8-146 37-232 96-283 334-468 601-468 33 0 228 34 318 115l52 47v-66-66h170 170l-2 703-3 702-167 3-168 2v-65c0-36-2-65-4-65-3 0-22 16-43 35-48 44-121 84-187 101-66 18-216 17-286-2zm315-383c107-50 177-147 193-270 23-167-51-322-186-388-75-37-191-40-264-6-63 29-134 102-166 171-24 50-27 69-27 162 0 92 3 112 26 160 61 131 163 199 299 200 51 0 78-6 125-29z"/><path d="m9286 8756c-132-49-200-209-151-355 20-61 88-134 141-151 57-19 145-8 194 24 196 130 126 465-102 491-25 3-59-1-82-9z"/><path d="m1991 7714c-116-31-216-108-268-205l-28-54v-3475-3475l28-56c32-67 104-137 177-174 114-58-86-55 3312-55 2245 0 3142 3 3180 11 130 27 256 116 305 217l28 57v3012 3013l-35 34c-19 19-316 249-660 513-793 607-821 628-847 642-16 8-695 11-2580 10-2202 0-2566-2-2612-15zm4959-649c5-405 6-422 27-467 28-61 106-139 173-173 119-60 97-59 703-62l557-4v-2907c0-2538-2-2910-15-2928-8-12-30-29-49-38-31-15-289-16-3135-16-3336 0-3139-3-3186 50-20 22-20 36-20 3456v3434l31 31c17 17 47 35 65 39 19 4 1116 7 2439 6l2405-1 5-420zm774-100c245-187 445-343 445-347 1-5-178-8-396-8-373 0-401 2-441 20-70 32-72 43-72 386 0 178 4 294 9 292 5-1 210-156 455-343z"/><path d="m2755 5491c-136-34-168-154-58-223l38-23 1218-3c869-2 1230 1 1260 9 125 33 144 166 34 227-30 16-116 17-1247 19-668 0-1228-2-1245-6z"/><path d="m2713 4650c-80-36-104-120-51-178 51-55-117-52 2610-52 2382 0 2525 1 2558 18 101 51 100 166-3 213-41 18-110 19-2557 19-2459 0-2516-1-2557-20z"/><path d="m2699 3819c-40-24-69-65-69-101 0-34 34-85 72-105 32-17 147-18 2568-18h2535l39 24c44 27 70 79 61 121-6 28-44 69-82 89-16 8-701 11-2555 11h-2533l-36-21z"/><path d="m2727 3006c-20-8-44-20-53-27-20-16-44-63-44-84 0-35 32-83 69-103l39-22h2526c2742 0 2562-4 2616 54 47 51 26 136-43 173-30 17-162 18-2552 20-2090 2-2526 0-2558-11z"/><path d="m2715 2176c-101-45-109-161-13-213 31-17 100-18 1256-21 824-1 1236 1 1262 8 121 33 137 171 26 224-31 14-149 16-1268 16-1005-1-1239-3-1263-14z"/></g>
+  </svg>
+  {% when 'leaf' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %} icon-leaf" viewBox="0 0 64 64">
+    <defs>
+      <style>
+        .a {
+          fill: none;
+          stroke: #000;
+          stroke-miterlimit: 10;
+          stroke-width: 2px
+        }
+      </style>
+    </defs><path class="a" d="M52 11L13 50M35 13v15h16"/><path class="a" d="M52 11c6 24-16.72 47.29-33 32C7 22 29 10 52 11z"/></svg>
+  {% when 'lock' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %} icon-lock" viewBox="0 0 64 64">
+    <defs>
+      <style>
+        .a {
+          fill: none;
+          stroke: #000;
+          stroke-width: 2px
+        }
+      </style>
+    </defs><path class="a" d="M19.45 23.6v-3.2c0-7 5.89-11.75 12.55-11.75 7.21 0 12.55 5.49 12.55 11.75v3.2M10 23.6h44v31.75H10zM32 37.47v7.47"/><circle class="a" cx="32" cy="35.87" r="1.6"/></svg>
+  {% when 'package' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %} icon-package" viewBox="0 0 64 64">
+    <defs>
+      <style>
+        .a {
+          fill: none;
+          stroke: #000;
+          stroke-width: 2px
+        }
+      </style>
+    </defs><path class="a" d="M32 54.52L10 41.95v-19.9L32 9.48l22 12.57v19.9L32 54.52z"/><path class="a" d="M32 54.52v-19.9l22-12.57M32 34.62L10 22.05M41.7 15.02L21 28.33v8.38"/></svg>
+  {% when 'phone' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %} icon-phone" viewBox="0 0 64 64">
+    <defs>
+      <style>
+        .a {
+          fill: none;
+          stroke: #000;
+          stroke-width: 2px
+        }
+      </style>
+    </defs><path class="a" d="M18.4 9.65l10.2 10.2-6.32 6.32c2.1 7 6.89 12.46 15.55 15.55l6.32-6.32 10.2 10.2-8.75 8.75C25.71 50.3 13.83 38.21 9.65 18.4z"/></svg>
+  {% when 'ribbon' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %} icon-ribbon" viewBox="0 0 64 64">
+    <defs>
+      <style>
+        .a {
+          fill: none;
+          stroke: #000;
+          stroke-width: 2px
+        }
+      </style>
+    </defs><path class="a" d="M28.57 42.31l-8.36 13.07-2.6-7.17-7.61.65 8.35-13.07a17.05 17.05 0 0 0 8.12 5.94 17.3 17.3 0 0 0 1.74.5zM54 48.86l-7.61-.65-2.61 7.17-8.36-13.07.37-.08a16.4 16.4 0 0 0 1.73-.5 17 17 0 0 0 8.12-5.93z"/><path class="a" d="M49 25.64a16.79 16.79 0 0 1-3.14 9.85 3.55 3.55 0 0 1-.23.31 17 17 0 0 1-8.12 5.93 16.4 16.4 0 0 1-1.73.5l-.37.08a16.74 16.74 0 0 1-3.42.35 16.91 16.91 0 0 1-3.43-.35l-.36-.08a17.3 17.3 0 0 1-1.74-.5 17.05 17.05 0 0 1-8.12-5.94c-.07-.09-.15-.19-.22-.3A16.86 16.86 0 0 1 15 25.64a17 17 0 0 1 34 0z"/><path class="a" d="M36.09 27.78l.96 5.63L32 30.75l-5.05 2.66.96-5.63-4.09-3.98 5.65-.82L32 17.86l2.53 5.12 5.64.82-4.08 3.98z"/></svg>
+  {% when 'shield' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %} icon-shield" viewBox="0 0 64 64">
+    <defs>
+      <style>
+        .a {
+          fill: none;
+          stroke: #000;
+          stroke-width: 2px
+        }
+      </style>
+    </defs><path class="a" d="M21.18 31.69L28.54 39l15.91-15.88"/><path class="a" d="M53 12.54v15.24a31.41 31.41 0 0 1-3.7 14.95A25.46 25.46 0 0 1 32 56a25.46 25.46 0 0 1-17.3-13.27A31.41 31.41 0 0 1 11 27.78V12.54C24.88 13.67 32 8 32 8s7.12 5.67 21 4.54z"/></svg>
+  {% when 'shield2' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %}" viewBox="0 0 287 287">
+    <g transform="translate(0 287) scale(.1 -.1)">
+      <defs>
+        <style>
+          .a {
+            fill: none;
+            stroke: #000;
+            stroke-width: 2px
+          }
+        </style>
+      </defs><path d="m1446 2701c-23-44-98-105-184-149-142-74-288-107-551-125l-166-12-3-680c-2-761-4-738 69-875 84-156 233-303 459-455 130-88 384-225 415-225s285 137 415 225c226 152 375 299 459 455 73 137 71 114 69 875l-3 680-166 12c-254 17-402 50-545 119-78 38-167 111-190 155-20 39-58 40-78 0zm97-296c98-111 331-185 588-185 53 0 80-4 88-14 9-10 11-157 9-563l-3-550-44-89c-84-169-305-358-586-501l-111-56-114 59c-179 91-311 184-431 303-90 91-112 119-150 195l-44 89-3 550c-2 406 0 553 9 563 8 10 35 14 91 14 257 0 505 82 598 199 18 23 38 41 44 41s32-25 59-55z"/><path d="m1910 1839c-130-89-260-200-396-336l-130-132-105 84c-57 47-111 84-119 84s-40-22-70-49l-55-49 210-210c115-116 212-211 215-211s29 48 59 106c101 200 298 469 455 624 36 35 66 68 66 73 0 12-40 67-48 67-4 0-41-23-82-51z"/></g>
+  </svg>
+  {% when 'tag' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %} icon-tag" viewBox="0 0 64 64">
+    <defs>
+      <style>
+        .a {
+          fill: none;
+          stroke: #000;
+          stroke-width: 2px
+        }
+      </style>
+    </defs><path class="a" d="M46.69 10.34l-10.55.07-25.8 25.8 17.45 17.45 25.8-25.8.07-10.55-6.97-6.97z"/><circle class="a" cx="43.95" cy="20.05" r="3.53"/><path class="a" d="M14.4 32.15L31.85 49.6"/></svg>
+  {% when 'truck' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %} icon-truck" viewBox="0 0 64 64">
+    <defs>
+      <style>
+        .a {
+          fill: none;
+          stroke: #000;
+          stroke-miterlimit: 10;
+          stroke-width: 2px
+        }
+      </style>
+    </defs><path class="a" d="M16.5 43.22H6.88V16.5h33.14v26.72H23.94M45.42 43.22h-5.4V30.4h17.1v12.82h-4.23M57.12 30.4l-6.41-8.56H40.02"/><circle class="a" cx="20.24" cy="43.76" r="3.74"/><path class="a" d="M45.42 43.23a3.82 3.82 0 1 1 0 .37v-.37"/></svg>
+  {% when 'truck2' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %} trust-badges-mobile-icon-truck2" viewBox="0 0 24 24">
+    <defs>
+      <style>
+        .a {
+          fill: none;
+          stroke: #000;
+          stroke-width: 2px
+        }
+      </style>
+    </defs><path d="m6.5 19h-2c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h2c.276 0 .5.224.5.5s-.224.5-.5.5z"/><path d="m22.75 19h-1.25c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h.835l.674-3.592c-.009-1.838-1.579-3.408-3.509-3.408h-3.283l-1.591 7h2.874c.276 0 .5.224.5.5s-.224.5-.5.5h-3.5c-.152 0-.296-.069-.391-.188-.095-.118-.131-.274-.097-.422l1.818-8c.052-.229.254-.39.488-.39h3.682c2.481 0 4.5 2.019 4.5 4.5l-.759 4.092c-.044.237-.25.408-.491.408z"/><path d="m19.5 21c-1.378 0-2.5-1.121-2.5-2.5s1.122-2.5 2.5-2.5 2.5 1.121 2.5 2.5-1.122 2.5-2.5 2.5zm0-4c-.827 0-1.5.673-1.5 1.5s.673 1.5 1.5 1.5 1.5-.673 1.5-1.5-.673-1.5-1.5-1.5z"/><path d="m8.5 21c-1.378 0-2.5-1.121-2.5-2.5s1.122-2.5 2.5-2.5 2.5 1.121 2.5 2.5-1.122 2.5-2.5 2.5zm0-4c-.827 0-1.5.673-1.5 1.5s.673 1.5 1.5 1.5 1.5-.673 1.5-1.5-.673-1.5-1.5-1.5z"/><path d="m6.5 10h-4c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h4c.276 0 .5.224.5.5s-.224.5-.5.5z"/><path d="m6.5 13h-5c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h5c.276 0 .5.224.5.5s-.224.5-.5.5z"/><path d="m6.5 16h-6c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h6c.276 0 .5.224.5.5s-.224.5-.5.5z"/><path d="m14 19h-3.5c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h3.101l2.272-10h-11.373c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h12c.152 0 .296.069.391.188.095.118.131.274.097.422l-2.5 11c-.052.229-.255.39-.488.39z"/></svg>
+  {% when 'mesh' %}
+  <svg aria-hidden="true" focusable="false" role="presentation" style="height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px;" class="icon{% unless isSalesPoint %} trust-badges-mobile-icon{% endunless %}" viewBox="0 0 24 24">
+    <g transform="translate(0 24) scale(.1 -.1)">
+      <defs>
+        <style>
+          .a {
+            fill: none;
+            stroke: #000;
+            stroke-width: 2px
+          }
+        </style>
+      </defs><path d="m50 205c0-8-7-15-15-15s-15-4-15-10c0-5 7-10 15-10s15-9 15-20-7-20-15-20-15-4-15-10c0-5 7-10 15-10s15-9 15-20-7-20-15-20-15-4-15-10c0-5 7-10 15-10s15-7 15-15 5-15 10-15c6 0 10 7 10 15s9 15 20 15 20-7 20-15 5-15 10-15c6 0 10 7 10 15s9 15 20 15 20-7 20-15 5-15 10-15c6 0 10 7 10 15s7 15 15 15 15 5 15 10c0 6-7 10-15 10s-15 9-15 20 7 20 15 20 15 5 15 10c0 6-7 10-15 10s-15 9-15 20 7 20 15 20 15 5 15 10c0 6-7 10-15 10s-15 7-15 15-4 15-10 15c-5 0-10-7-10-15s-9-15-20-15-20 7-20 15-4 15-10 15c-5 0-10-7-10-15s-9-15-20-15-20 7-20 15-4 15-10 15c-5 0-10-7-10-15zm60-55c0-13-7-20-20-20s-20 7-20 20 7 20 20 20 20-7 20-20zm60 0c0-13-7-20-20-20s-20 7-20 20 7 20 20 20 20-7 20-20zm-60-60c0-13-7-20-20-20s-20 7-20 20 7 20 20 20 20-7 20-20zm60 0c0-13-7-20-20-20s-20 7-20 20 7 20 20 20 20-7 20-20z"/></g>
+  </svg>
+  {% when 'bed' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">🛌</span>
+  {% when 'cartwheel' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">🤸🏽‍♀️</span>
+  {% when 'couch' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">🛋</span>
+  {% when 'drop' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">💧</span>
+  {% when 'curlyhair' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">👩🏼‍🦱</span>
+  {% when 'feather3' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">🪶</span>
+  {% when 'fire' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">🔥</span>
+  {% when 'hairstyle' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">💇🏽‍♀️</span>
+  {% when 'heartface' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">🥰</span>
+  {% when 'hearts' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">💕</span>
+  {% when 'magnifyingglass' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">🔎</span>
+  {% when 'massage' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">💆</span>
+  {% when 'omg' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">😱</span>
+  {% when 'pain' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">🤕</span>
+  {% when 'peach' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">🍑</span>
+  {% when 'snowflake' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">❄️</span>
+  {% when 'stars' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">✨</span>
+  {% when 'teddy' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">🧸</span>
+  {% when 'tornado' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">🌪️</span>
+  {% when 'wind' %}
+  <span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;">💨</span>
+  {% when 'twint-without-title' %}<span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;"><img src="https://cdn.shopify.com/s/files/1/0768/9594/5016/files/twint-without-logo.png?v=1688042513" height="28px" width="28px"></span>
+  {% when 'twint-with-title' %}<span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;"><img src="https://cdn.shopify.com/s/files/1/0768/9594/5016/files/twint-with-logo_91dfb1c8-9d8b-4609-8de0-f1aa8e5bc443.png?v=1688043631" height="28px" width="28px"></span>
+  {% when '5stars' %}<span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;"><img src="https://cdn.shopify.com/s/files/1/0768/9594/5016/files/5stars_1b4ae331-3804-4fb6-a372-802c244f7abc.png?v=1688045720" height="28px" width="28px"></span>
+  {% when 'box-clock' %}<span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;"><img src="https://cdn.shopify.com/s/files/1/0768/9594/5016/files/box-clock.png?v=1688043878" height="28px" width="28px"></span>
+  {% when 'flag' %}<span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;"><img src="https://cdn.shopify.com/s/files/1/0768/9594/5016/files/flag_copy_32c369a3-5f1a-4ff2-b49b-5feaee74a9f4.png?v=1688045849" height="28px" width="28px"></span>
+  {% when 'hands' %}<span class="icon{% unless isSalesPoint %} trust-badges-mobile-emoji-icon{% endunless %}" style="line-height: {{ trustBadgesSize }}px; text-align: center; height: {{ trustBadgesSize }}px; width: {{ trustBadgesSize }}px; font-size: {{ trustBadgesSize | times: 0.82 | round }}px;"><img src="https://cdn.shopify.com/s/files/1/0768/9594/5016/files/hands_copy.png?v=1688043884" height="28px" width="28px"></span>
+{% endcase %}

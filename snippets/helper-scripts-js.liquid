@@ -1,0 +1,132 @@
+<script type="text/javascript">
+  // Re-build cart when added to cart within another browser tab
+  //
+  window.addEventListener('focus', function (event) {
+      document.dispatchEvent(new CustomEvent('cart:build'));
+  });
+
+  document.addEventListener('ajaxProduct:added', function (event) {
+      // document.dispatchEvent(new CustomEvent('cart:build'));
+    
+      setTimeout(function() {
+          document.dispatchEvent(new CustomEvent('cart:open'));
+          document.dispatchEvent(new CustomEvent('cart:build'));
+      }, 550);
+  });
+  
+  document.addEventListener('page:loaded', function() {
+	var template = {{ template | json }};
+    
+  	// Update shipping dates
+  	//
+  	var min_date = new Date();
+  	var max_date = new Date();
+  	
+  	min_date.setDate(min_date.getDate() + 4);
+  	max_date.setDate(max_date.getDate() + 7);
+  	
+  	var injMinDay = document.getElementById('inject_min_day');
+  	var injMaxDay = document.getElementById('inject_max_day');
+  	
+  	if (injMinDay && injMaxDay) {
+  		injMinDay.innerHTML = min_date.toLocaleDateString('de-DE', {year: 'numeric', month: '2-digit', day: '2-digit',});
+  		injMaxDay.innerHTML = max_date.toLocaleDateString('de-DE', {year: 'numeric', month: '2-digit', day: '2-digit',});
+  	}
+  	
+  	
+  	// Open first tab element
+  	//
+  	var openFirstCollapsibleIndex = true;
+
+    if (template === 'index' && {{ settings.open_first_collapsible_index | json }} == false) {
+        openFirstCollapsibleIndex = false;
+    }
+  	
+  	if ({{ settings.open_first_collapsible | json }} && openFirstCollapsibleIndex) {
+  		var elementsCollapsibleTriggers = document.getElementsByClassName("collapsible-trigger");
+  		
+  		for (var i = 0; i < elementsCollapsibleTriggers.length; i++) {
+  			var elActualAriaControl = elementsCollapsibleTriggers.item(i).getAttribute('aria-controls');
+  			
+  			if (elActualAriaControl.includes('Product')) {
+  				setTimeout(function() {
+  					elementsCollapsibleTriggers.item(i).click();
+  				}, 1000);
+  				
+  				break;
+  			}
+  		}
+  	}
+
+    
+  	// Create wrapper around qty and variants div for better formatting after blocks got generated
+  	//
+  	var wrapperElement = document.createElement('div');
+  	wrapperElement.id = 'qtyVariantContainer';
+  
+  	var pickerTypeJS = {{ pickerType | json }};
+  
+  	if (pickerTypeJS == 'button') {
+  		wrapperElement.style["display"] = "block";  
+  	}
+
+  	var qtyElement = document.querySelector('#mot-satc-qty-selector');
+  	var variantsElement = document.querySelector('#mot-satc-variant-picker');
+  
+  	if (qtyElement && variantsElement) {
+  		Array.prototype.forEach.call(document.querySelectorAll('#mot-satc-qty-selector, #mot-satc-variant-picker'), function(c, index) {
+  			if (index == 0) {
+  				c.parentNode.insertBefore(wrapperElement, c);
+  			}
+  			
+  			wrapperElement.appendChild(c);
+  		});
+  	} else if (qtyElement && qtyElement.classList.contains('motHideQuantity') != true) {
+  		qtyElement.parentNode.insertBefore(wrapperElement, qtyElement);
+  		wrapperElement.appendChild(qtyElement);
+  	} else if (variantsElement) {
+  		variantsElement.parentNode.insertBefore(wrapperElement, variantsElement);
+  		wrapperElement.appendChild(variantsElement);
+  	}
+
+    
+    // Unused but maybe usefull scripts
+    //
+
+    // Adapt tab margin-top on index page
+  	//
+    /*
+      if (template === 'index') {
+          var detailsTab = document.querySelector('.product-block--tab');
+          
+          if (detailsTab) {
+              setTimeout(function() {
+                  detailsTab.style["margin-top"] = "-25px";
+              }, 2500);
+          }
+      }
+
+      if (template === 'index' ) {
+      {% unless settings.open_first_collapsible_index %}
+      openFirstCollapsibleIndex = false;
+      {% endunless %}
+      }
+
+      var calloutWrapper = document.getElementById('mot-callout-wrapper');
+      
+      if (calloutWrapper) {
+      var images = calloutWrapper.getElementsByClassName('mot-callout-image');
+      var calloutWidth = calloutWrapper.clientWidth;
+      
+      Array.prototype.forEach.call(images, function(image, index) {
+      if (index > 0) {
+      var centerOffset = (calloutWidth - image.clientWidth) * 0.5;
+      
+      image.style.transition = "none";
+      image.style.transform = "translate3d(" + centerOffset + "px,0,0)";
+      }
+      });
+      }
+  	*/
+  });
+</script>

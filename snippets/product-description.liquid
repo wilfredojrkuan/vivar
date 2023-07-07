@@ -1,0 +1,40 @@
+
+{% if product.description contains "<!-- split:" and is_tab %}
+  {% assign content_array = product.description | split: '<!-- split:' %}
+ 
+  <div class="rte">
+    {{ content_array | first }}
+    <div style="border-bottom: 1px solid; border-bottom-color: {{ settings.color_borders }}; width: 100%; margin-top: 5px;"></div>
+  </div>
+
+  {% assign loop_count = 10000 %}
+
+  {% for tab in content_array offset:1 %}
+	{% assign tab_tmp = tab | split: ' -->' %}
+
+	{% assign tab_title = tab_tmp | first %}
+    {% assign tab_content = tab_tmp | last %}
+
+	{% assign tab_new_id = block.id | append: loop_count %}
+	{%- render 'tab', id: tab_new_id, title: tab_title, content: tab_content -%}
+
+	{% assign loop_count = loop_count | plus: 1 %}
+  {% endfor %}
+{%- else -%}
+  {% capture description %}
+    {%- if product.empty? -%}
+      {{ 'home_page.onboarding.product_description' | t }}
+    {%- else -%}
+      {{ product.description }}
+    {%- endif -%}
+  {% endcapture %}
+
+  {%- if is_tab -%}
+    {% assign title = 'products.product.description' | t %}
+    {%- render 'tab', id: id, title: title, content: description -%}
+  {%- else -%}
+    <div class="rte">
+      {{ description }}
+    </div>
+  {%- endif -%}
+{%- endif -%}

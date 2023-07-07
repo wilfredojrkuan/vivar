@@ -1,0 +1,30 @@
+<div id="Product-content-{{ id }}">
+  <div style="margin-top: {{ paymentMethodsDistToTop }}px !important"></div>
+  
+  {% if settings.show_payment_badges_border %}
+    <fieldset id="mot-satc-payment-badges-fieldset" class="payment-fieldset" style="margin: 0 auto 0 auto !important;">
+    <legend class="payment-fieldset-legend">{{ settings.payment_badges_title }}</legend>
+  {% endif %}  
+      
+  <div id="mot-satc-payment-badges" style="text-align: center;{% if settings.show_payment_badges_border %} padding-top: 8px !important;{% endif %}  ">
+    <div style="display: flex; justify-content: center;">
+	  {% if settings.payment_badges_show_amex %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'american_express' | payment_type_img_url }}" alt="american_express" />{% endif %}
+      {% if settings.payment_badges_show_amazon %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'amazon_payments' | payment_type_img_url }}" alt="amazon payments" />{% endif %}
+      {% if settings.payment_badges_show_apple %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'apple_pay' | payment_type_img_url }}" alt="apple pay" />{% endif %}
+      {% if settings.payment_badges_show_google %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'google_pay' | payment_type_img_url }}" alt="google pay" />{% endif %}
+      {% if settings.payment_badges_show_klarna %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'klarna' | payment_type_img_url }}" alt="klarna" />{% endif %}
+      {% if settings.payment_badges_show_maestro %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'maestro' | payment_type_img_url }}" alt="maestro" />{% endif %}
+      {% if settings.payment_badges_show_master %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'master' | payment_type_img_url }}" alt="master" />{% endif %}
+      {% if settings.payment_badges_show_paypal %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'paypal' | payment_type_img_url }}" alt="paypal" />{% endif %}
+      {% if settings.payment_badges_show_sofort %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'sofort' | payment_type_img_url }}" alt="sofort" />{% endif %}
+      {% if settings.payment_badges_show_twint %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'twint' | payment_type_img_url }}" alt="twint" />{% endif %}
+      {% if settings.payment_badges_show_visa %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'visa' | payment_type_img_url }}" alt="visa" />{% endif %}
+    </div>
+  </div>
+      
+  {% if settings.show_payment_badges_border %}
+    </fieldset>
+  {% endif %}
+  
+  <div style="margin-bottom: {{ paymentMethodsDistToBottom }}px !important"></div>
+</div>

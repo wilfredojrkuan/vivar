@@ -1,0 +1,118 @@
+{% assign makeATCBtnSubmit = false %}
+
+{% assign productTags = product.tags | join: ', ' %}
+
+{% if productTags contains "DONTSHOWVARIANTSELECTOR" or product.variants.size <= 1 %}
+  {% assign makeATCBtnSubmit = true %}
+{% endif %}
+
+{% form 'product', product, id: form_id, class: 'product-single__form' %}
+  {%- assign enable_dynamic_buttons = false -%}
+  {% if show_dynamic_checkout and template != 'product.preorder' %}
+    {%- assign enable_dynamic_buttons = true -%}
+  {% endif %}
+
+  {% if enable_dynamic_buttons %}
+    <div class="payment-buttons">
+  {% endif %}
+
+    {%- liquid
+      assign default_text = 'products.product.add_to_cart' | t
+      assign button_text = 'products.product.add_to_cart' | t
+      if template contains 'preorder'
+        assign default_text = 'products.product.preorder' | t
+        assign button_text = 'products.product.preorder' | t
+      endif
+      unless current_variant.available
+        assign button_text = 'products.product.sold_out' | t
+      endunless
+    -%}
+
+  <div id="mot-modal-atc" class="mot-full-sticky-atc">
+    <button
+      data-mot-modal-target="#mot-modal"
+      id="mot-modal-atc-btn"
+      type="{% if makeATCBtnSubmit %}submit{% else %}button{% endif %}"
+      name="add"
+      data-add-to-cart
+      class="blockAppearAnimation mot-btn-hide btn btn--full add-to-cart{% if enable_dynamic_buttons and product.selling_plan_groups.size == 0 %} add-to-cart--secondary{% endif %}"
+      {% unless current_variant.available %} disabled="disabled"{% endunless %}>
+      <div style="display: table-row; text-align: center;">
+        <div id="motATCBtnTextNormal">
+          <div style="display: table-cell; vertical-align: middle;">
+            {%- if settings.cart_icon == 'bag' -%}
+              <svg style="margin-right: 6px;" aria-hidden="true" focusable="false" role="presentation" class="icon icon-bag-mot" viewBox="0 0 64 64"><g fill="none" stroke="#000" stroke-width="2"><path d="M25 26c0-15.79 3.57-20 8-20s8 4.21 8 20"/><path d="M14.74 18h36.51l3.59 36.73h-43.7z"/></g></svg>
+            {%- elsif settings.cart_icon == 'bag-minimal' -%}
+              <svg style="margin-right: 6px;" aria-hidden="true" focusable="false" role="presentation" class="icon icon-bag-minimal-mot" viewBox="0 0 64 64"><path stroke="null" id="svg_4" fill-opacity="null" stroke-opacity="null" fill="null" d="M11.375 17.863h41.25v36.75h-41.25z"/><path stroke="null" id="svg_2" d="M22.25 18c0-7.105 4.35-9 9.75-9s9.75 1.895 9.75 9"/></svg>
+            {%- else -%}
+              <svg style="margin-right: 6px;" aria-hidden="true" focusable="false" role="presentation" class="icon icon-cart-mot" viewBox="0 0 64 64"><path d="M14 17.44h46.79l-7.94 25.61H20.96l-9.65-35.1H3"/><circle cx="27" cy="53" r="2"/><circle cx="47" cy="53" r="2"/></svg>
+            {%- endif -%}
+          </div>
+          <div style="display: table-cell; vertical-align: middle;">      
+            <span data-add-to-cart-text data-default-text="{{ default_text }}">
+              {{ button_text }}
+            </span>
+          </div>
+        </div>
+        <div id="motATCBtnText">
+          <div style="display: table-cell; vertical-align: middle;">      
+              <svg style="margin-right: 3px;"  width="25" height="15" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" role="img" ><g stroke="white" stroke-width="4" fill="white" fill-rule="evenodd"><polygon fill="white" fill-rule="nonzero" points="14.6553946 35.392902 5.19935444 25.8272493 0 31.0869305 12.4784711 43.7100827 12.4927896 43.6954946 14.7708631 46 50 10.3619014 44.6998024 5"></polygon></g></svg>
+          </div>
+          <div style="display: table-cell; vertical-align: middle;">
+            <span>
+              Hinzugefügt
+            </span>
+          </div>
+        </div>
+      </div>
+    </button>
+    <div id="mot-modal-payment-badges" style="text-align: center; margin-top: 12px !important;">
+        {% if settings.payment_badges_show_amazon %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'amazon_payments' | payment_type_img_url }}" alt="amazon payments" />{% endif %}
+        {% if settings.payment_badges_show_amex %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'american_express' | payment_type_img_url }}" alt="american_express" />{% endif %}
+        {% if settings.payment_badges_show_apple %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'apple_pay' | payment_type_img_url }}" alt="apple pay" />{% endif %}
+        {% if settings.payment_badges_show_google %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'google_pay' | payment_type_img_url }}" alt="google pay" />{% endif %}
+        {% if settings.payment_badges_show_klarna %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'klarna' | payment_type_img_url }}" alt="klarna" />{% endif %}
+        {% if settings.payment_badges_show_maestro %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'maestro' | payment_type_img_url }}" alt="maestro" />{% endif %}
+        {% if settings.payment_badges_show_master %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'master' | payment_type_img_url }}" alt="master" />{% endif %}
+        {% if settings.payment_badges_show_paypal %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'paypal' | payment_type_img_url }}" alt="paypal" />{% endif %}
+        {% if settings.payment_badges_show_sofort %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'sofort' | payment_type_img_url }}" alt="sofort" />{% endif %}
+        {% if settings.payment_badges_show_twint %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'twint' | payment_type_img_url }}" alt="twint" />{% endif %}
+        {% if settings.payment_badges_show_visa %}<img class="badgeborder-atc lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ 'visa' | payment_type_img_url }}" alt="visa" />{% endif %}
+    </div>
+  </div>
+
+  {% if enable_dynamic_buttons %}
+      {{ form | payment_button }}
+  {% endif %}
+
+  {% if enable_dynamic_buttons %}
+    </div>
+  {% endif %}
+
+  <div class="shopify-payment-terms product__policies">{{ form | payment_terms }}</div>
+                
+  <select name="id" data-product-select class="product-single__variants no-js">
+    {%- for variant in product.variants -%}
+      {% if variant.available %}
+        <option {% if variant == product.selected_or_first_available_variant %}
+          selected="selected" {% endif %}
+          value="{{ variant.id }}">
+          {{ variant.title }} - {{ variant.price | money_with_currency }}
+        </option>
+      {% else %}
+        <option disabled="disabled">
+          {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+        </option>
+      {% endif %}
+    {%- endfor -%}
+  </select>
+
+  <textarea data-variant-json class="hide" aria-hidden="true" aria-label="Product JSON">
+    {{ product.variants | json }}
+  </textarea>
+  {% if product.options.size > 1 %}
+    <textarea data-current-variant-json class="hide" aria-hidden="true" aria-label="Variant JSON">
+      {{ current_variant | json }}
+    </textarea>
+  {% endif %}
+{% endform %}

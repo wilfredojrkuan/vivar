@@ -1,0 +1,391 @@
+<!doctype html>
+ 
+<html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ settings.text_direction }}">
+	<head>
+      	
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="theme-color" content="{{ settings.color_button }}">
+        {%- if page_description -%}
+			<meta name="description" content="{{ page_description | escape }}">
+		{%- endif -%}
+
+		{%- render 'social-meta-tags' -%}
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" as="style">
+<meta name="facebook-domain-verification" content="whnoz22wwpdjmfn01frdflkjxlqclw" />
+		{% comment %}
+		// Only use if GDPR Legal Cookie App is used and not working properly
+		{% render "load-metafields" %}
+		{% endcomment %}
+		
+		<script type="text/javascript">
+          var junk_sites = ["adspy.com","crx.commerceinspector.com","app.commerceinspector.com","pexda.com","ecomhunt.com","dropship-spy.com","ehproductfinder.com","dropshippinggenesis.com","productmafia.com","e-sniper.com","drospy.com","anon.to","shoptrace.co","smartadfinder.com","nullrefer.com","upwork.com","nichescraper.com","salessource.io","fbcandy.com","easyali.com"];
+        
+          junk_sites.forEach(function(v) {
+              if (document.referrer.indexOf(v) != -1) {
+                  document.location.href = parseURL('https://' + window.location.hostname);
+              }
+          });
+        </script>
+		
+		<link rel="canonical" href="{{ canonical_url }}">
+        {% if settings.show_announcement %}
+    		<link rel="preload" href="{{ 'swiper-bundle.min.js' | asset_url }}" as="script">
+    		<link rel="preload" href="{{ 'swiper-bundle.min.css' | asset_url }}" as="style">
+        {% endif %}
+        <script src="{{ 'heimwelt.js' | asset_url }}" defer></script>
+		<link rel="preload" href="{{ 'theme.css' | asset_url }}" as="style" >
+		<link rel="preload" href="{{ 'font-awesome.min.css' | asset_url }}" as="style" >
+		<link rel="preconnect" href="https://cdn.shopify.com">
+		<link rel="preconnect" href="https://fonts.shopifycdn.com">
+		<link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
+		<link rel="dns-prefetch" href="https://ajax.googleapis.com">
+		<link rel="dns-prefetch" href="https://maps.googleapis.com">
+		<link rel="dns-prefetch" href="https://maps.gstatic.com">
+		<link rel="dns-prefetch" href="connect.facebook.net">
+
+		{%- if settings.favicon != blank -%}
+			<link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png" />
+		{%- endif -%}
+
+		{%- render 'seo-title' -%}
+
+		
+		{%- render 'font-face' -%}
+		
+		{{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
+		
+		{%- render 'css-variables' -%}
+
+        {% capture 'upsellMetaFields' %}
+          {
+              {% for product in collections[settings.mot_cart_upsell_collection].products %}
+                  "{{ product.handle }}" : {
+                      product_link_to_original : "{{ product.metafields.custom.link_to_original }}"
+                  },        
+              {% endfor %}
+          }
+        {% endcapture %}
+
+		<script>
+            var upsellMetaFields = {{ upsellMetaFields }};
+          
+			document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+			
+			window.theme = window.theme || {};
+			
+			theme.routes = {
+				home: "{{ routes.root_url }}",
+				cart: "{{ routes.cart_url | append: '.js' }}",
+				cartPage: "{{ routes.cart_url }}",
+				cartAdd: "{{ routes.cart_add_url | append: '.js' }}",
+				cartChange: "{{ routes.cart_change_url | append: '.js' }}",
+				search: "{{ routes.search_url }}"
+			};
+			
+			theme.strings = {
+				soldOut: {{ 'products.product.sold_out' | t | json }},
+				unavailable: {{ 'products.product.unavailable' | t | json }},
+				inStockLabel: {{ 'products.product.in_stock_label' | t | json }},
+				stockLabel: {{ 'products.product.stock_label' | t: count: '[count]' | json }},
+                stockLowLabel: {{ 'products.product.in_stock_low_label' | t: count: '[count]' | json }},
+				willNotShipUntil: {{ 'products.product.will_not_ship_until' | t: date: '[date]' | json }},
+				willBeInStockAfter: {{ 'products.product.will_be_in_stock_after' | t: date: '[date]' | json }},
+				waitingForStock: {{ 'products.product.waiting_for_stock' | t | json }},
+				cartSavings: {{ 'cart.general.savings_html' | t: savings: '[savings]' | json }},
+				cartEmpty: {{ 'cart.general.empty' | t | json }},
+				cartTermsConfirmation: {{ 'cart.general.terms_confirm' | t | json }},
+				searchCollections: {{ 'general.search.collections' | t | json }},
+				searchPages: {{ 'general.search.pages' | t | json }},
+				searchArticles: {{ 'general.search.articles' | t | json }}
+			};
+			
+			theme.settings = {
+				dynamicVariantsEnable: true,
+				cartType: {{ settings.cart_type | json }},
+				isCustomerTemplate: {% if request.page_type contains 'customers/' %}true{% else %}false{% endif %},
+				moneyFormat: {{ shop.money_format | json }},
+				predictiveSearch: {{ settings.predictive_search_enabled }},
+				predictiveSearchType: {{ settings.search_type | json }},
+				quickView: {{ settings.quick_shop_enable }},
+				themeName: 'Motion',
+				themeVersion: "9.1.0"
+			};
+			
+			theme.motSettings = {
+				openFirstCollapsible: {{ settings.open_first_collapsible | json }},
+				closeOpenCollapsibles: {{ settings.close_open_collapsibles | json }},
+				scrollClickedCollapsible: {{ settings.scroll_clicked_collapsible | json }},
+				applyBundleDiscounts: {{ settings.apply_bundle_discounts | json }},
+				discountValue1: {{ settings.discount_value_1 | json }},
+				discountValue2: {{ settings.discount_value_2 | json }},
+				discountValue3: {{ settings.discount_value_3 | json }},
+				cartIconEnableCount: {{ settings.cart_icon_enable_count | json }},
+				cartUpsellTitle1: {{ settings.cart_upsell_title_1 | json }},
+				cartUpsellLabel1: {{ settings.cart_upsell_label_1 | json }},
+				cartUpsellTitle2: {{ settings.cart_upsell_title_2 | json }},
+				cartUpsellLabel2: {{ settings.cart_upsell_label_2 | json }},
+				cartUpsellTitle3: {{ settings.cart_upsell_title_3 | json }},
+				cartUpsellLabel3: {{ settings.cart_upsell_label_3 | json }},
+				cartUpsellTitle4: {{ settings.cart_upsell_title_4 | json }},
+				cartUpsellLabel4: {{ settings.cart_upsell_label_4 | json }},
+				applySummarizedPrice: {{ settings.apply_summarized_price | json }},
+				sameCollapsibleSettingsOnFaq: {{ settings.same_collapsible_settings_on_faq | json }},
+				sameCollapsibleSettingsOnFooter: {{ settings.same_collapsible_settings_on_footer | json }},
+				showYouSave: {{ settings.show_you_save | json }},
+                showUrgency: {{ settings.show_urgency | json }},
+				showPlantTrees: {{ settings.show_plant_trees | json }},
+                shippingFreeShipping: {{ settings.shipping_free_shipping | json }},
+				showBundleDiscounts: {{ settings.show_bundle_discounts | json }},
+                filterWordPlantTrees: {{ settings.filter_word_plant_trees | json }},
+                stickyAtcType: {{ settings.sticky_atc_type | json }},
+                fullStickyHideIndex: {{ settings.full_sticky_hide_index | json }},
+                fullStickyChooseNormalText: {{ settings.full_sticky_choose_normal_text | json }},
+                fullStickyChooseNormalColor: {{ settings.full_sticky_choose_normal_color | json }},
+                fullStickyChooseWarningText: {{ settings.full_sticky_choose_warning_text | json }},
+                fullStickyChooseWarningColor: {{ settings.full_sticky_choose_warning_color | json }},
+                fullStickyChooseSuccessText: {{ settings.full_sticky_choose_success_text | json }},
+                fullStickyChooseSuccessColor: {{ settings.full_sticky_choose_success_color | json }},
+                fullStickyChooseNoStocksText: {{ settings.full_sticky_choose_no_stocks_text | json }},
+                fullStickyStayOpened: {{ settings.full_sticky_stay_opened | json }},
+                motCartUpsellShow: {{ settings.mot_cart_upsell_show | json }},
+                motCartUpsellExcludeFromDiscounts: {{ settings.mot_cart_upsell_exclude_from_discounts | json }},
+                upsellProducts: {{ collections[settings.mot_cart_upsell_collection].products | json }},
+                motCartUpsellHeadingText: {{ settings.mot_cart_upsell_heading_text | json }},
+                motCartUpsellHintText: {{ settings.mot_cart_upsell_hint_text | json }},
+                productImageShowVariantLabel: {{ settings.product_image_show_variant_label | json }},
+                cartNoneUpsellTitle: {{ settings.cart_none_upsell_title | json }},
+                cartNoneUpsellLabel: {{ settings.cart_none_upsell_label | json }},
+                cartNoneUpsellTitleColor: {{ settings.cart_none_upsell_title_color | json }}
+			};
+
+            var json_product = {{ product | json }};
+            var json_shop_name = {{ shop.name | json }};
+            var json_template = {{ template | json }};
+		</script>
+{{ content_for_header }}	
+		<script src="{{ 'vendor-scripts-v14.js' | asset_url | split: '?' | first }}" defer="defer"></script>
+
+		{%- if shop.enabled_currencies.size > 1 -%}
+			<link rel="stylesheet" href="{{ 'country-flags.css' | asset_url | split: '?' | first }}">
+		{%- endif -%}
+
+		<script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+		<script src="https://unpkg.com/scrollreveal"></script>
+
+		<script src="{{ 'jquery.min.js' | asset_url }}"></script>
+
+		{% comment %}
+		// Only use if Areviews App is in use and already installed
+        <script src='https://areviewsapp.com/js_codes/collection_rating.js' defer></script>
+		{% endcomment %}
+        {% include "scripts" %}
+        {%- render 'atc-cookie-js' %}
+		
+		<script type="text/javascript">
+          var dyn_checkout_qbb_cookie = "dynamic_checkout_shown_on_cart";
+          setCookie(dyn_checkout_qbb_cookie, 1, 168);
+        </script>
+
+		{% if settings.show_announcement %}
+			<script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+			
+			{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+		{% endif %}
+
+		{% if settings.apply_anti_theft %}
+			{% include 'anti-theft' %}
+		{% endif %}
+
+		{%- if request.page_type contains 'customers/' -%}
+			<script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+		{%- endif -%}
+		
+		{% if request.design_mode %}
+			<script src="https://api.archetypethemes.co/design-mode.js" defer="defer"></script>
+		{% endif %}
+
+		{% if settings.show_scroll_progress %}
+			<script src="{{ 'mot-scroll-progress.js' | asset_url }}" defer="defer"></script>
+		{% endif %}
+
+		<script src="{{ 'mot-aos-refresh.js' | asset_url }}" defer="defer"></script>
+		<script src="{{ 'mot-exit-pop-copy-btn.js' | asset_url }}" defer="defer"></script>
+
+		{{ 'font-awesome.min.css' | asset_url | stylesheet_tag: preload: true }}
+	
+	{{ shop.metafields.loox["global_html_head"] }}
+	<script>
+    function getRandomNumber(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function getUniqueRandomNumber() {
+      var randomNumber;
+      
+      if (sessionStorage.getItem("randomNumber")) {
+        randomNumber = parseInt(sessionStorage.getItem("randomNumber"));
+      } else {
+        randomNumber = getRandomNumber(1100, 6000);
+        sessionStorage.setItem("randomNumber", randomNumber);
+      }
+      
+      return randomNumber;
+    }
+  </script>
+</head>
+
+	<body class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if request.path == '/challenge' %} template-challange{% endif %}" data-transitions="{{ settings.animate_page_transitions }}" data-type_header_capitalize="{{ settings.type_header_capitalize }}" data-type_base_accent_transform="{{ settings.type_base_accent_transform }}" data-type_header_accent_transform="{{ settings.type_header_accent_transform }}" data-animate_sections="{{ settings.animate_sections }}" data-animate_underlines="{{ settings.animate_underlines }}" data-animate_buttons="{{ settings.animate_buttons }}" data-animate_images="{{ settings.animate_images }}" data-animate_page_transition_style="{{ settings.animate_page_transition_style }}" data-type_header_text_alignment="{{ settings.type_headers_align_text }}" data-animate_images_style="{{ settings.animate_images_style | default: "zoom-fade" }}">
+		{% if settings.animate_page_transitions %}
+			<script type="text/javascript">window.setTimeout(function() { document.body.className += " loaded"; }, 25);</script>
+		{% endif %}
+
+		<a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+		<div id="PageContainer" class="page-container">
+			<div class="transition-body">
+				{%- section 'header' -%}
+				{% section 'newsletter-popup' %}
+				
+				<main class="main-content {% if settings.show_announcement %}motAnnouncementBarSpace{% endif %}" id="MainContent">
+					{{ content_for_layout }}
+				</main>
+				
+				{%- section 'footer-promotions' -%}
+				{%- section 'footer' -%}
+			</div>
+		</div>
+
+		{%- liquid
+            render 'video-modal'
+            render 'photoswipe-template'
+            render 'tool-tip'
+  		-%}
+
+		
+		{% comment %}
+		// Only use if GDPR Legal Cookie App is used and not working properly
+		{% render "bc_banner" %}
+		{% endcomment %}
+	
+	{{ shop.metafields.loox["global_html_body"] }}
+
+
+
+{% if product %}
+<script>
+window.addEventListener('load', function() {
+var _learnq = window._learnq || [];
+function addedToCart() {
+  fetch(`${window.location.origin}/cart.js`)
+  .then(res => res.clone().json().then(data => {
+    var cart = {
+      total_price: data.total_price/100,
+      $value: data.total_price/100,
+      total_discount: data.total_discount,
+      original_total_price: data.original_total_price/100,
+      items: data.items
+    }
+    if (item !== 'undefined') {
+      cart = Object.assign(cart, item)
+    }
+    if (klAjax) {
+        _learnq.push(['track', 'Added to Cart', cart]);
+        klAjax = false;
+      }
+  }))
+};
+(function (ns, fetch) {
+  ns.fetch = function() {
+    const response = fetch.apply(this, arguments);
+    response.then(res => {
+      if (`${window.location.origin}/cart/add.js`
+      	.includes(res.url)) {
+        	addedToCart()
+      }
+    });
+    return response
+  }
+}(window, window.fetch));
+var klAjax = true;
+var atcButtons = document.querySelectorAll("form[action*='/cart/add'] button[type='submit']");
+for (var i = 0; i < atcButtons.length; i++) {
+    atcButtons[i].addEventListener("click", function() {
+      if (klAjax) {
+        _learnq.push(['track', 'Added to Cart', item]);
+        klAjax = false;
+      }
+    })
+}
+});
+</script>
+{% endif %}
+<script>
+  
+</script>
+
+<style>
+  .hura-announcement-bar .hura-message{
+    Font-weight: bold !important;
+  }
+.res_ul li h6 {
+margin-top: 14px !important;
+}
+
+@media only screen and (max-width: 819px){
+
+  }
+</style>
+{{ "//cdn.shopify.com/s/files/1/0633/1672/1913/t/1/assets/splide.min.js" | script_tag}}
+
+          
+<script>
+    document.getElementById("randomNumber").textContent = getUniqueRandomNumber();
+  </script>   
+  <script>
+    const cartLink = document.querySelector('.cart-link');
+
+    function animateCartLink() {
+      cartLink.classList.add('animate');
+      setTimeout(() => {
+        cartLink.classList.remove('animate');
+      }, 1000);
+    }
+
+    setInterval(animateCartLink, 5000);
+  </script>
+
+  <script>
+    window.onload = () => {
+        const drawLink = document.querySelector('.drawer_shipping');
+        if (drawLink) {
+
+            function animateDrawLink() {
+                drawLink.classList.add('animate');
+                setTimeout(() => {
+                    drawLink.classList.remove('animate');
+                }, 1000);
+            }
+
+            setInterval(animateDrawLink, 5000);
+        }
+    };
+</script>
+
+  
+
+  <script>
+	ScrollReveal({ reset: true });
+
+
+ScrollReveal().reveal(".slide-right", {
+  duration: 2000,
+  origin: "left",
+  distance: "200px",
+  easing: "ease-in-out"
+});
+
+</script>
+</body>
+</html>

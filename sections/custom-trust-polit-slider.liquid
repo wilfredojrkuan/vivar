@@ -1,0 +1,306 @@
+<div id="shopify-section-template--15992724553889__cbcbfa88-5e10-48e5-9191-69f580e124be" class="shopify-section">
+<style>
+  .aus_t_svg {
+    display: flex;
+}
+  .aus_review_container {
+      display: flex;
+      margin: .3%;
+      align-items: center;
+  }
+
+  .aus_reviews_all {
+      width: 80%;
+      padding: 0 2%;
+  }
+
+.verified-icon {
+  width: 14px;
+}
+
+.verified-badge-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 3px;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  grid-column-gap: 3px;
+  grid-row-gap: 3px;
+}
+
+.verified-text {
+  color: #6c6c85;
+  font-weight: 300;
+  font-size: 12px;
+}
+
+  .us-post {
+      background: #fff;
+      margin: 10px 10px;
+      border-radius: 5px;
+      box-shadow: 1px 1px 11px 2px rgb(0 0 0 / 16%);
+  }
+  .aus-section {
+      padding: 15px 0;
+      background: #FAFAFC;
+  }
+  .us-post-info{
+    padding:20px 15px;
+  }
+  .us-post h5{
+      margin: 0;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .01em;
+      color: grey;
+      font-family: "Roboto", sans-serif !important;
+    }
+    .str-rating{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  .str-rating p{
+      font-size: 12px;
+      font-weight: 400;
+      font-family: "Roboto", sans-serif !important;
+  }
+  .TP-heading .TP-text {
+      font-size: 13px;
+      font-family: "Roboto", sans-serif !important;
+  }
+  .TP-heading {
+      width: 20%;
+      text-align: center;
+      padding: 10px 0;
+  }
+  .verified-badge-wrapper {
+    margin-top: 10px;
+}
+.aus_t_svg {
+    flex-direction: column;
+}
+
+  .TP-reviews h3 {
+      margin: 5px 0;
+      font-size: 14px !important;
+      font-weight: 600;
+      letter-spacing: .01em;
+      font-family: "Roboto", sans-serif !important;
+  }
+  .TP-reviews .rev p {
+      font-size: 13px !important;
+      font-family: "Roboto", sans-serif !important;
+  }
+  @media(max-width:481px){
+.aus_review_container {
+flex-direction: column;
+}
+
+.TP-heading {
+width: 100%;
+}
+
+.aus_reviews_all {
+width: 100%;
+}
+}
+
+
+  .aus_review_container .slick-next, .slick-prev {
+display:none!important
+  }
+</style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer" ></script>
+
+
+
+
+  
+  <div class="box" id="aus-tp-rvs">
+  <div class="wrapper page-width">
+    <div class="aus_review_width">
+      <div class="aus_review_container">
+        <div class="TP-heading">
+          <h2 class="TP-title">{{ section.settings.headingg }}</h2>
+          <svg class="star-rating dkt" width="1068" height="200" viewBox="0 0 1068 200" style="height: 30px;width: auto;" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0V200H200V0H0ZM130 127.5L143 166.5L100 135.5L57 165.5L73 115.5L30.5 84H83.5L100 33.5L116.5 84H169.5L101 134.5L130 127.5Z" fill="#00B67B"></path>
+            <path d="M217 0V200H417V0H217ZM347 127.5L360 166.5L317 135.5L274 165.5L290 115.5L247.5 84H300.5L317 33.5L333.5 84H386.5L318 134.5L347 127.5Z" fill="#00B67B"></path>
+            <path d="M434 0V200H634V0H434ZM564 127.5L577 166.5L534 135.5L491 165.5L507 115.5L464.5 84H517.5L534 33.5L550.5 84H603.5L535 134.5L564 127.5Z" fill="#00B67B"></path>
+            <path d="M651 0V200H851V0H651ZM781 127.5L794 166.5L751 135.5L708 165.5L724 115.5L681.5 84H734.5L751 33.5L767.5 84H820.5L752 134.5L781 127.5Z" fill="#00B67B"></path>
+            <path d="M868 0V200H1068V0H868ZM998 127.5L1011 166.5L968 135.5L925 165.5L941 115.5L898.5 84H951.5L968 33.5L984.5 84H1037.5L969 134.5L998 127.5Z" fill="#00B67B"></path>
+            <path d="M968 0V33.5L984.5 84H1037.5L969 134.5L998 127.5L1011 166.5L968 135.5V200H1068V0H968Z" fill="#DBDBDD"></path>
+          </svg>
+          <!--
+            <svg class="star-rating dkt" xmlns="http://www.w3.org/2000/svg" id="" data-name="Calque 2" viewBox="0 0 1068 200" style="height: 30px;"><defs><linearGradient id=""><stop offset="0%" stop-color="#00b67b"></stop><stop offset="0%" stop-color="#dbdce4" stop-opacity="1"></stop></linearGradient><style>.filled {fill: #00b67b;}.empty {fill: #dbdce4;}</style></defs><path class="filled" d="M0,0V200H200V0ZM130,127.5l13,39-43-31-43,30,16-50L30.5,84h53L100,33.5,116.5,84h53L101,134.5Z"></path><path class="filled" d="M217,0V200H417V0ZM347,127.5l13,39-43-31-43,30,16-50L247.5,84h53L317,33.5,333.5,84h53L318,134.5Z"></path><path class="filled" d="M434,0V200H634V0ZM564,127.5l13,39-43-31-43,30,16-50L464.5,84h53L534,33.5,550.5,84h53L535,134.5Z"></path><path class="filled" d="M651,0V200H851V0ZM781,127.5l13,39-43-31-43,30,16-50L681.5,84h53L751,33.5,767.5,84h53L752,134.5Z"></path><path class="filled" d="M868,0V200h200V0ZM998,127.5l13,39-43-31-43,30,16-50L898.5,84h53L968,33.5,984.5,84h53L969,134.5Z"></path></svg>
+          -->
+          <div class="TP-text"><p>{{ section.settings.rating-text }}</p></div>
+
+         
+
+          <!-- <img src="//cdn.shopify.com/s/files/1/0555/4444/7249/t/8/assets/trustpilot.png?261" responsive> -->
+        </div>
+        <div class="aus_reviews_all">
+          <div class="aus_review_slider ">
+
+
+
+            {% for block in section.blocks %}
+             <div class="us-post "  style="width: 250px;">
+                <div class="us-post-info">
+                  <div class="str-rating">
+                    <div class="aus_t_svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="" data-name="Calque 2" viewBox="0 0 1068 200" style="height: 18px;">
+                      <defs><linearGradient id=""><stop offset="0%" stop-color="#00b67b"></stop><stop offset="0%" stop-color="#dbdce4" stop-opacity="1"></stop>
+                      </linearGradient><style>.filled {fill: #00b67b;}.empty {fill: #dbdce4;}</style></defs>
+                      <path class="filled" d="M0,0V200H200V0ZM130,127.5l13,39-43-31-43,30,16-50L30.5,84h53L100,33.5,116.5,84h53L101,134.5Z"></path>
+                      <path class="filled" d="M217,0V200H417V0ZM347,127.5l13,39-43-31-43,30,16-50L247.5,84h53L317,33.5,333.5,84h53L318,134.5Z"></path>
+                      <path class="filled" d="M434,0V200H634V0ZM564,127.5l13,39-43-31-43,30,16-50L464.5,84h53L534,33.5,550.5,84h53L535,134.5Z"></path>
+                      <path class="filled" d="M651,0V200H851V0ZM781,127.5l13,39-43-31-43,30,16-50L681.5,84h53L751,33.5,767.5,84h53L752,134.5Z"></path>
+                      <path class="filled" d="M868,0V200h200V0ZM998,127.5l13,39-43-31-43,30,16-50L898.5,84h53L968,33.5,984.5,84h53L969,134.5Z"></path>
+                    </svg>
+                    <div class="verified-badge-wrapper">
+                        <img src="https://cdn.shopify.com/s/files/1/0667/6869/9616/files/verified-badge.svg?v=1667239046" loading="lazy" alt="" class="verified-icon">
+                        <div class="verified-text">Verified</div>
+                    </div>
+                    </div>
+                    <p>Vor {{ block.settings.days }} Tagen</p>
+                  </div>
+                  <h3></h3>
+                  <div class="rev"><p>{{ block.settings.review_text }}</p></div>
+                  <h5>{{ block.settings.customer_name}}</h5>
+                </div>
+              </div>
+                {% endfor %}
+      
+                
+                
+           
+                
+                
+                
+                
+                </div>
+        </div>
+            
+              
+       
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+
+</script>
+
+
+
+
+<style>
+  #aus-tp-rvs{
+  padding: 30px 0;
+    background: #FAFAFC;
+  }
+</style>
+<script>
+  $('.aus_review_slider').slick({
+   infinite: true,
+   slidesToShow: 3,
+   slidesToScroll: 1,
+   autoplay: true,
+   autoplaySpeed: 5000,
+  responsive: [
+   {
+      breakpoint: 900,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 2
+      }
+   },
+   {
+      breakpoint: 600,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+   }
+  ]
+  });
+</script>
+
+
+</div>
+{% schema %}
+  {
+    "name": "Custom Testmonial Slider",
+    "settings": [
+
+
+{
+            "type": "text",
+            "id": "headingg",
+            "label": "Main title"
+         },
+{
+            "type": "text",
+            "id": "rating-text",
+            "label": "Rating text"
+         }
+
+  
+
+      
+    ],
+    "blocks": [{
+      "type": "Review",
+      "name": "Review",
+      "settings": [{
+            "type": "header",
+            "content": "Review"
+         },
+         {
+            "type": "textarea",
+            "id": "review_text",
+            "label": "Review Paragraph"
+         },
+          {
+            "type": "text",
+            "id": "customer_name",
+            "label": "Customer Name"
+         },
+           {
+            "type": "text",
+            "id": "days",
+            "label": "Enter ? days "
+         }
+        
+      ]
+   }],
+    "presets":[{
+      "name":"Custom Testmonial Slider"
+    }]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

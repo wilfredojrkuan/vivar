@@ -1,0 +1,193 @@
+
+    <div class="page-width page-width--narrow mot-faq-spaces faq-accordion">
+        <h2 class="faq-h2">{{ section.settings.header }} </h2>
+        <div class="accordion-faq">
+            {%- for block in section.blocks -%}
+                {%- case block.type -%}
+                {%- when 'accordion_item' -%}
+                    <div class="accordion-item">
+                        <button id="accordion-faq-button-1" aria-expanded="false">
+                            <span class="accordion-title">{{ block.settings.accordion_header }} </span>
+                            <span class="icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>
+                                {{ block.settings.accordion_content }} 
+                            </p>
+                        </div>
+                    </div>
+                {%- endcase -%}
+            {%- endfor -%}
+            
+        </div>
+    </div>
+
+{% schema %}
+{
+"name": "FAQ Accordion",
+"settings": [
+    {
+        "type": "text",
+        "id": "header",
+        "label": "Header",
+        "default": "Frequently Asked Questions"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Accordion Item",
+        "type": "accordion_item",
+        "settings": [
+          {
+            "type": "text",
+            "id": "accordion_header",
+            "label": "Accordion Header",
+            "default": "Title",
+            "placeholder": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "accordion_content",
+            "label": "Accordion Content"
+          }
+        ]
+      }
+    ],
+"presets": [
+  {
+    "name": "FAQ Accordion"
+  }
+]
+}  
+{% endschema %}
+    
+{%- style -%}
+.faq-h2 {
+    text-align: center;
+}
+.accordion-title {
+    font-weight: 600;
+}
+.accordion-item {
+    border: 1px #ddd solid;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+    
+.accordion-faq .accordion-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.accordion-faq .accordion-item button[aria-expanded='true'] {
+  border-bottom: 1px solid #ddd;
+}
+
+.accordion-faq button {
+  position: relative;
+  display: block;
+  text-align: left;
+  width: 100%;
+  padding: 1em 0;
+  color: #000;
+  font-size: 1.15rem;
+  font-weight: 400;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.accordion-faq button:hover,
+.accordion-faq button:focus {
+  cursor: pointer;
+  color: #000;
+}
+
+.accordion-faq button:hover::after,
+.accordion-faq button:focus::after {
+  cursor: pointer;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.accordion-faq button .accordion-title {
+  padding: 1em 1.5em 1em 0;
+}
+
+.accordion-faq button .icon {
+  display: inline-block;
+  position: absolute;
+  top: 18px;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border: 1px solid;
+  border-radius: 22px;
+}
+
+.accordion-faq button .icon::before {
+  display: block;
+  position: absolute;
+  content: '';
+  top: 9px;
+  left: 5px;
+  width: 10px;
+  height: 2px;
+  background: currentColor;
+}
+.accordion-faq button .icon::after {
+  display: block;
+  position: absolute;
+  content: '';
+  top: 5px;
+  left: 9px;
+  width: 2px;
+  height: 10px;
+  background: currentColor;
+}
+
+.accordion-faq button[aria-expanded='true'] {
+  color: #000;
+}
+.accordion-faq button[aria-expanded='true'] .icon::after {
+  width: 0;
+}
+.accordion-faq button[aria-expanded='true'] + .accordion-content {
+  opacity: 1;
+  max-height: 9em;
+  transition: all 200ms linear;
+  will-change: opacity, max-height;
+}
+.accordion-faq .accordion-content {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 200ms linear, max-height 200ms linear;
+  will-change: opacity, max-height;
+}
+.accordion-faq .accordion-content p {
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 2em 0;
+}
+
+    {%- endstyle -%}
+    
+<script>
+    const items = document.querySelectorAll('.accordion-faq button');
+
+    function toggleAccordion() {
+        const itemToggle = this.getAttribute('aria-expanded');
+    
+        for (let i = 0; i < items.length; i++) {
+        items[i].setAttribute('aria-expanded', 'false');
+        }
+    
+        if (itemToggle === 'false') {
+        this.setAttribute('aria-expanded', 'true');
+        }
+    }
+    
+    items.forEach((item) => item.addEventListener('click', toggleAccordion));
+        
+
+</script>

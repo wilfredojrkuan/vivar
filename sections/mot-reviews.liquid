@@ -1,0 +1,289 @@
+{%- if section.settings.divider -%}<div class="section--divider">{%- endif -%}
+ 
+<div class="page-width mot-reviews-index" style="margin-bottom: 75px;">
+  {%- if section.settings.title != blank -%}
+    <div class="section-header text-{{ section.settings.align_text }}">
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+  {% endif %}
+
+  <div class="mot-reviews">
+    <div class="mot-reviews-img" data-aos-offset="-120" data-aos-once="false" data-aos="mot-image-animation-1">
+      {%- if section.settings.main_review_img == blank -%}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+	  {%- else -%}
+        {%- assign appendix = 'x' | append: section.settings.main_review_img_height -%}
+        {%- assign img_url = section.settings.main_review_img | img_url: appendix -%}
+      	<img class="lazyload"
+             data-src="{{ img_url }}"
+             alt="{{ section.settings.image.alt }}">
+      {%- endif -%}
+    </div>
+    <div class="mot-reviews-container">
+      <div class="mot-reviews-container-top">
+        <div class="mot-reviews-container-first-review" data-aos-offset="-5" data-aos-once="false" data-aos="mot-image-animation-2">
+          <div class="mot-reviews-inner-container">
+            <div class="mot-reviews-inner-container-wrapper">
+              <div>
+                <span class="reviews_rating_stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </span>
+                <span class="reviews_rating_verified">
+                  Verifizierte Bewertung
+                </span>
+              </div>
+              <div class="reviews_title_container">
+                <div class="reviews_title">
+                  {{ section.settings.review_title_1 }}
+                </div>
+              </div>
+              <div class="reviews_text_container">
+                <div class="justifyMot reviews_text">
+                  {{ section.settings.review_text_1 }}
+                </div>
+              </div>
+            </div>
+            <div class="reviews_url_container">
+              <span  class="reviews_url">
+              	<a href="{{ section.settings.reviews_url }}">Zur Produktseite, um mehr zu sehen</a>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="mot-reviews-container-second-review" data-aos-offset="-5" data-aos-once="false" data-aos="mot-image-animation-3">
+          <div class="mot-reviews-inner-container">
+            <div class="mot-reviews-inner-container-wrapper">
+              <div>
+                <span class="reviews_rating_stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </span>
+                <span class="reviews_rating_verified">
+                  Verifizierte Bewertung
+                </span>
+              </div>
+              <div class="reviews_title_container">
+                <div class="reviews_title">
+                  {{ section.settings.review_title_2 }}
+                </div>
+              </div>
+              <div class="reviews_text_container">
+                <div class="justifyMot reviews_text">
+                  {{ section.settings.review_text_2 }}
+                </div>
+              </div>
+            </div>
+            <div class="reviews_url_container">
+              <span  class="reviews_url">
+              	<a href="{{ section.settings.reviews_url }}">Zur Produktseite, um mehr zu sehen</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mot-reviews-container-bottom">
+        <div class="mot-reviews-container-first-review-bottom" data-aos-offset="-5" data-aos-once="false" data-aos="mot-image-animation-4">
+          <div class="mot-reviews-inner-container">
+            <div class="mot-reviews-inner-container-wrapper">
+              <div>
+                <span class="reviews_rating_stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </span>
+                <span class="reviews_rating_verified">
+                  Verifizierte Bewertung
+                </span>
+              </div>
+              <div class="reviews_title_container">
+                <div class="reviews_title">
+                  {{ section.settings.review_title_3 }}
+                </div>
+              </div>
+              <div class="reviews_text_container">
+                <div class="justifyMot reviews_text">
+                  {{ section.settings.review_text_3 }}
+                </div>
+              </div>
+            </div>
+            <div class="reviews_url_container">
+              <span  class="reviews_url">
+              	<a href="{{ section.settings.reviews_url }}">Zur Produktseite, um mehr zu sehen</a>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="mot-reviews-container-second-review" data-aos-offset="-5" data-aos-once="false" data-aos="mot-image-animation-5">
+          <div class="mot-reviews-inner-container">
+            <div class="mot-reviews-inner-container-wrapper">
+              <div>
+                <span class="reviews_rating_stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </span>
+                <span class="reviews_rating_verified">
+                  Verifizierte Bewertung
+                </span>
+              </div>
+              <div class="reviews_title_container">
+                <div class="reviews_title">
+                  {{ section.settings.review_title_4 }}
+                </div>
+              </div>
+              <div class="reviews_text_container">
+                <div class="justifyMot reviews_text">
+                  {{ section.settings.review_text_4 }}
+                </div>
+              </div>
+            </div>
+            <div class="reviews_url_container">
+              <span  class="reviews_url">
+              	<a href="{{ section.settings.reviews_url }}">Zur Produktseite, um mehr zu sehen</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- if section.settings.divider -%}</div>{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Mot Reviews",
+    "class": "index-section",
+    "settings": [
+	  {
+        "type": "header",
+        "content": "General"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "select",
+        "id": "align_text",
+        "label": "Text alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centered"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      },
+	  {
+        "type": "header",
+        "content": "Image"
+      },
+	  {
+        "type": "image_picker",
+        "id": "main_review_img",
+        "label": "Main review image",
+        "info": "Left main picture"
+      },
+	  {
+        "type": "number",
+        "id": "main_review_img_height",
+        "label": "Image height",
+        "default": 480
+      },
+	  {
+        "type": "header",
+        "content": "Reviews"
+      },
+	  {
+        "type": "url",
+        "id": "reviews_url",
+        "label": "URL to review page"
+      },
+	  {
+        "type": "header",
+        "content": "First Review"
+      },
+      {
+        "type": "text",
+        "id": "review_title_1",
+        "label": "Title"
+      },
+	  {
+        "type": "text",
+        "id": "review_text_1",
+        "label": "Text"
+      },
+	  {
+        "type": "header",
+        "content": "Second Review"
+      },
+      {
+        "type": "text",
+        "id": "review_title_2",
+        "label": "Title"
+      },
+	  {
+        "type": "text",
+        "id": "review_text_2",
+        "label": "Text"
+      },
+	  {
+        "type": "header",
+        "content": "Third Review"
+      },
+      {
+        "type": "text",
+        "id": "review_title_3",
+        "label": "Title"
+      },
+	  {
+        "type": "text",
+        "id": "review_text_3",
+        "label": "Text"
+      },
+	  {
+        "type": "header",
+        "content": "Fourth Review"
+      },
+      {
+        "type": "text",
+        "id": "review_title_4",
+        "label": "Title"
+      },
+	  {
+        "type": "text",
+        "id": "review_text_4",
+        "label": "Text"
+      }
+    ],
+    "presets": [
+    {
+      "name": "Advanced Reviews Box"
+    }
+  ]
+  }
+{% endschema %}

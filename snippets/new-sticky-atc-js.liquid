@@ -1,0 +1,482 @@
+<script type="text/javascript">
+    var motModalAlreadyClosed = false;
+    var motAtcBtnActive = false;
+    var motAtcBtnModalOpen = false;
+    var motChangedVariantInitially = false;
+    var openModal = {{ settings.full_sticky_open_popup | json }};
+ 
+    // Open modal if not all variants are selected
+    //
+    function openMotModal(motModal, motAtcBtn, motOverlay) {
+        if (!motModal || !motAtcBtn || !motOverlay) return;
+
+        if (!openModal) {
+          setAtcBtnStatus(true);
+        }
+
+        if (motAtcBtn.type == "submit" && !motAtcBtnActive && !motAtcBtnModalOpen) {
+            motAtcBtnActive = true;
+        }
+
+        if (!motAtcBtnModalOpen) {
+            if (!motAtcBtnActive) {
+                motModal.classList.add('active');
+                motOverlay.classList.add('active');
+
+                changeChooseTextNormal();
+                moveMotAtcBtnUp(true);
+                motAtcBtnModalOpen = true;
+
+                setTimeout(function() {
+                    setAtcBtnStatus(true);
+                }, 550);
+            } else {
+                // openMotCart(550);
+            }
+        } else {
+            if (motAtcBtnActive && !theme.motSettings.fullStickyStayOpened) {
+                motModal.classList.remove('active');
+                motOverlay.classList.remove('active');
+                
+                moveMotAtcBtnUp(false);
+                motAtcBtnModalOpen = false;
+                
+                // openMotCart(550);
+            }
+        }
+    }
+    
+    
+    // Close modal if all variants are selected
+    //
+    function closeMotModal(motModal, motAtcBtn, motOverlay) {
+        if (!motModal || !motAtcBtn || !motOverlay) return;
+
+        if (!motChangedVariantInitially && motModalAlreadyClosed) {
+            setAtcBtnStatus(false);
+        }
+        
+        checkIfItemsAreInCart(motModal, motAtcBtn, motOverlay);
+    }
+    
+    
+    // Check if there are items in cart
+    //
+    function checkIfItemsAreInCart(motModal, motAtcBtn, motOverlay) {
+        var areItemsInCart = false;
+        
+        fetch('/cart.js', {method: 'GET'})
+        .then(response => {
+            return response.json();
+        })
+        .then(response => {
+            if (response.item_count > 0) {
+                areItemsInCart = true;
+            }
+            
+            handleCloseMotModal(motModal, motAtcBtn, motOverlay, areItemsInCart)
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+    
+    
+    // Helper to wait for GET request response of cart count
+    // 
+    function handleCloseMotModal(motModal, motAtcBtn, motOverlay, areItemsInCart) {
+        if (!motModal || !motAtcBtn || !motOverlay || areItemsInCart == null) return;
+    
+        if (areItemsInCart) {
+            motModal.classList.remove('active');
+            motOverlay.classList.remove('active');
+            
+            moveMotAtcBtnUp(false);
+            motAtcBtnModalOpen = false;
+            
+            // openMotCart(550);
+        } else {
+            if (!motModalAlreadyClosed) {
+                changeChooseTextWarning();
+                motModalAlreadyClosed = true;
+            } else {
+                motModal.classList.remove('active');
+                motOverlay.classList.remove('active');
+                
+                moveMotAtcBtnUp(false);	
+                motAtcBtnModalOpen = false;
+            }
+        }
+    }
+    
+    
+    // Hide atc button first after opening product page and show after initial scroll
+    //
+    function motShowAtcBtn() {
+        var motAtcBtn = document.getElementById("mot-modal-atc-btn");
+        if (!motAtcBtn) return;
+    
+        if (motAtcBtn.classList.contains('mot-btn-hide')) {
+            motAtcBtn.classList.remove('mot-btn-hide');
+            motAtcBtn.classList.add('mot-btn-load');
+        }
+
+        setTimeout(function () {
+          if (motAtcBtn.classList.contains('mot-btn-load')) {
+            motAtcBtn.classList.remove('mot-btn-load');
+          }
+          
+          motAtcBtn.classList.add('mot-btn-show');
+          document.removeEventListener('scroll', motShowAtcBtn);
+        }, 100);
+    }
+
+    
+    // Set correct modal heights before opening
+    //
+    function setCorrectModalHeights(timeout) {
+        var motModalAtc = document.getElementById("mot-modal-atc");
+        var motModalBody = document.getElementById("mot-modal-body-id");
+        var motModalHeightAdjust = document.getElementById("mot-modal-height-adjust");
+    
+        var motModal = document.getElementById("mot-modal");
+        var motModalHeader = document.getElementById("mot-modal-header");
+    
+        if (motModalAtc && motModalBody && motModalHeightAdjust && motModal && motModalHeader) {
+            setTimeout(function() {
+                var dynHeight = motModalAtc.getBoundingClientRect().height + 15 + 25;
+                motModalBody.style.paddingBottom = dynHeight + "px";
+    
+                var motModalHeight = motModal.getBoundingClientRect().height;
+                var motModalHeaderHeight = motModalHeader.getBoundingClientRect().height;
+                var dynHeightAdjust = motModalHeight - motModalHeaderHeight - dynHeight + 15;
+
+                motModalHeightAdjust.style.maxHeight = dynHeightAdjust + "px";
+                motModalHeightAdjust.style.overflowX = "hidden";
+                motModalHeightAdjust.style.overflowY = "auto";
+            }, timeout);
+        }
+    }
+
+    
+    // Move atc button a bit up when opening atc modal
+    //
+    function moveMotAtcBtnUp(active, motAtcBtn) {
+        const motAtcBtnContainer = document.getElementById('mot-modal-atc');
+        if (!motAtcBtnContainer) return;
+      
+        if (active) {
+            if (!motAtcBtnContainer.classList.contains('active')) {
+                motAtcBtnContainer.classList.add('active');
+
+                var motModalHeightAdjust = document.getElementById("mot-modal-height-adjust");
+              
+                if (motModalHeightAdjust) {
+                  if (!motModalHeightAdjust.classList.contains('active')) {
+                      motModalHeightAdjust.classList.add('active');
+                  }
+                }
+
+                if (!document.body.classList.contains('lock-scroll-body')) {
+                  document.body.classList.add('lock-scroll-body');
+                }
+            }
+        } else {
+            if (motAtcBtnContainer.classList.contains('active')) {
+                motAtcBtnContainer.classList.remove('active');
+            }
+
+            if (document.body.classList.contains('lock-scroll-body')) {
+                document.body.classList.remove('lock-scroll-body');
+            }
+
+            var motModalHeightAdjust = document.getElementById("mot-modal-height-adjust");
+              
+            if (motModalHeightAdjust) {
+                if (motModalHeightAdjust.classList.contains('active')) {
+                    motModalHeightAdjust.classList.remove('active');
+                }
+            }
+        }
+    }
+    
+    
+    // Open cart slider / page
+    //
+    function openMotCart(timeOut) {
+        setTimeout(function() {
+            document.dispatchEvent(new CustomEvent('cart:open'));
+        }, timeOut);
+    }
+    
+        
+    // Set atc button type to 'submit'
+    //
+    function setAtcBtnStatus(setActive) {
+        var motAtcBtn = document.getElementById('mot-modal-atc-btn');
+        if (!motAtcBtn || setActive == null) return;
+        
+        if (setActive) {
+            if (motAtcBtn.type == 'button') {
+                motAtcBtn.type = "submit";
+                motAtcBtnActive = true;
+            }
+        } else {
+            if (motAtcBtn.type == 'submit') {
+                motAtcBtn.type = "button";
+                motAtcBtnActive = false;
+            }
+        }
+    }
+    
+    // Set variant select of product page to modal input select
+    //
+    function motOnChangeVariantSelect(motSelectVal, loopInd) {
+        const variantInput = document.getElementById("SingleOptionSelector-{{ sectionId }}-{{ productId }}-option-" + loopInd);
+        
+        if (variantInput) {
+            variantInput.value = motSelectVal;
+        }
+    }
+    
+    
+    // Set modal variant select to input select of product page
+    //
+    function motOnChangeSingleOptionSelect(variantInputSelectVal, loopInd) {
+        const motSelect = document.getElementById("mot-variant-select" + loopInd);
+        
+        if (motSelect) {
+            motSelect.value = variantInputSelectVal;
+        }
+    }
+    
+    
+    // Change choose text normal in atc modal
+    //
+    function changeChooseTextNormal() {
+        var motModalChooseText = document.getElementById('mot-modal-choose-text');
+        if (!motModalChooseText) return;
+        
+        motModalChooseText.innerHTML = theme.motSettings.fullStickyChooseNormalText;
+        motModalChooseText.style["color"] = theme.motSettings.fullStickyChooseNormalColor;
+
+        setCorrectModalHeights(0);
+    }
+    
+    
+    // Change choose text warning in atc modal
+    //
+    function changeChooseTextWarning() {
+        var motModalChooseText = document.getElementById('mot-modal-choose-text');
+        if (!motModalChooseText) return;
+            
+        var warningText = theme.motSettings.fullStickyChooseWarningText;
+      
+        if (warningText.includes("~:[")) {
+            const warningTextTmp1 = warningText.split("~:[");
+            const warningTextTmp2 = warningTextTmp1[warningTextTmp1.length - 1].split("]");
+            const warningTextTitle1 = warningTextTmp1[0];
+            const warningTextTitle2 = warningTextTmp2[warningTextTmp1.length - 1];
+            const warningTextDays = parseInt(warningTextTmp2[0]);
+    
+            var date = new Date();
+            date.setDate(date.getDate() + warningTextDays);
+            const dateStr = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
+    
+            warningText = warningTextTitle1 + dateStr + warningTextTitle2;
+        }
+    
+        motModalChooseText.innerHTML = warningText;
+        motModalChooseText.style["color"] = theme.motSettings.fullStickyChooseWarningColor;
+
+        setCorrectModalHeights(0);
+    }
+    
+    
+    // Change choose text success in atc modal
+    //
+    function changeChooseTextSuccess() {
+        var motModalChooseText = document.getElementById('mot-modal-choose-text');
+        var motAtcBtn = document.getElementById('mot-modal-atc-btn');
+        if (!motModalChooseText || !motAtcBtn) return;
+
+        if (motAtcBtn.classList.contains('disabled')) {
+            motModalChooseText.innerHTML = theme.motSettings.fullStickyChooseNoStocksText;            
+            motModalChooseText.style["color"] = theme.motSettings.fullStickyChooseWarningColor;
+        } else {
+            motModalChooseText.innerHTML = theme.motSettings.fullStickyChooseSuccessText;
+            motModalChooseText.style["color"] = theme.motSettings.fullStickyChooseSuccessColor;
+        }
+
+        setCorrectModalHeights(0);
+    }
+    
+    
+    // Scroll event for showing atc button after first scroll
+    //
+    document.addEventListener('scroll', motShowAtcBtn);
+    
+    
+    // Variant change event for setting atc button activity, price and thumbnail change
+    //
+    document.addEventListener('variant:change', function(evt) {
+        if (evt && evt.detail && evt.detail.variant && evt.detail.variant.price && evt.detail.variant.featured_image && evt.detail.variant.featured_image.src) {
+            // Set atc button status true ('submit') and confirm customer with 'good choice' text
+            //
+            if (!motChangedVariantInitially) {
+              setAtcBtnStatus(true);
+              motChangedVariantInitially = true;
+            }
+
+            changeChooseTextSuccess();
+
+          
+            // Change price to corrresponding variant
+            //
+            var modalPrice = document.getElementById("motPriceChange").getElementsByClassName("product__price");          
+    
+            Array.prototype.forEach.call(modalPrice, function(el) {
+                var setPrice = false;
+              
+                if (el.classList.contains('sale-price')) {
+                  el.innerHTML = theme.Currency.formatMoney(evt.detail.variant.price, theme.settings.moneyFormat);    
+                  setPrice = true;
+                }
+    
+                if (el.classList.contains('product__price--compare')) {
+                  el.innerHTML = theme.Currency.formatMoney(evt.detail.variant.compare_at_price, theme.settings.moneyFormat);    
+                  setPrice = true;
+                }
+    
+                if (!setPrice) {
+                  el.innerHTML = theme.Currency.formatMoney(evt.detail.variant.price, theme.settings.moneyFormat);
+                }
+            });
+            
+            if (modalPrice) {
+                modalPrice.innerHTML = theme.Currency.formatMoney(evt.detail.variant.price, theme.settings.moneyFormat);
+            }
+
+      
+            // Change thumbnail to corrresponding variant
+            //
+            const modalImgUrl = evt.detail.variant.featured_image.src;
+            const lastIndex = modalImgUrl.lastIndexOf('.');
+            
+            if (lastIndex != -1) {
+                const first = modalImgUrl.slice(0, lastIndex);
+                const last = modalImgUrl.slice(lastIndex + 1);
+                const resizedImgUrl = first + '_150x.' + last;
+                
+                var modalImg = document.getElementById('motImageChange');
+                
+                if (resizedImgUrl && modalImg) {
+                    modalImg.setAttribute('data-src', resizedImgUrl);
+                    modalImg.setAttribute('src', resizedImgUrl);
+                }
+            }
+        }
+    });
+    
+    
+    // Quantity change event for setting product page, modal quantity and discount radio buttons simultaneously
+    //
+    document.addEventListener('motQty:quantity', function(evt) {
+        var motQuantityInput = document.getElementById('motQuantity-{{ qtyId }}');
+        var QuantityInput = document.getElementById('Quantity-{{ qtyId }}');
+        
+        if ({{ settings.apply_bundle_discounts | json }}) {
+            if (evt.detail[0]) {
+                if (motQuantityInput) {
+                    motFunc(motQuantityInput.value);
+                }
+            } else {
+                if (QuantityInput) {
+                    motFunc(QuantityInput.value);
+                }
+            }
+        }
+        
+        if (motQuantityInput && QuantityInput) {
+            if (evt.detail[0]) {
+                QuantityInput.value = motQuantityInput.value;
+            } else {
+                motQuantityInput.value = QuantityInput.value;
+            }
+        }
+    });
+    
+    
+    // When resize correct modal height
+    // ---------------------------------------
+    window.addEventListener('resize', function() {
+      setCorrectModalHeights(100);
+    }, true);
+
+
+    // Needed stuff for sticky atc on page loaded
+    // ---------------------------------------  
+    document.addEventListener('page:loaded', function() {
+        const openModalButtons = document.querySelectorAll('[data-mot-modal-target]');
+        const closeModalButtons = document.querySelectorAll('[data-mot-close-target]');
+        const motOverlay = document.getElementById('mot-modal-overlay');
+        const motAtcBtn = document.getElementById('mot-modal-atc-btn');
+        
+
+        setCorrectModalHeights(400);
+
+      
+        // EventListener: Open atc modal by button click
+        // 
+        openModalButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const motModal = document.querySelector(button.dataset.motModalTarget);
+                openMotModal(motModal, motAtcBtn, motOverlay);
+            });
+        });
+        
+        
+        // EventListener: Close atc modal by button click
+        // 
+        closeModalButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const motModal = button.closest('.mot-modal');
+                closeMotModal(motModal, motAtcBtn, motOverlay);
+            });
+        });
+        
+        
+        // EventListener: Close atc modal by overlay click
+        // 
+        motOverlay.addEventListener('click', () => {
+            const motModals = document.querySelectorAll('.mot-modal.active');
+            motModals.forEach(motModal => {
+                closeMotModal(motModal, motAtcBtn, motOverlay);
+            });
+        });
+        
+        
+        // Quantity handling for manual input change
+        // 
+        var motQuantityInput = document.getElementById('motQuantity-{{ qtyId }}');
+        var QuantityInput = document.getElementById('Quantity-{{ qtyId }}');
+        
+        if (motQuantityInput && QuantityInput) {
+            motQuantityInput.addEventListener('input', function() {
+                QuantityInput.value = motQuantityInput.value;
+                
+                if ({{ settings.apply_bundle_discounts | json }}) {
+                    motFunc(motQuantityInput.value);
+                }
+            });
+            
+            QuantityInput.addEventListener('input', function() {
+                motQuantityInput.value = QuantityInput.value;
+                
+                if ({{ settings.apply_bundle_discounts | json }}) {
+                    motFunc(QuantityInput.value);
+                }
+            });
+        }
+    });
+</script>

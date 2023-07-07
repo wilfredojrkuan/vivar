@@ -1,0 +1,124 @@
+{% assign heightTitle = trustBadgesTitleSize | times: 3 %}
+{% assign heightIcon = trustBadgesIconSize | divided_by: 0.8 | round %}
+ 
+{% assign neededHeight = 0 %}
+
+{% if heightTitle > heightIcon %}
+  {% assign neededHeight = heightTitle %}
+{% else %}
+  {% assign neededHeight = heightIcon %}
+{% endif %}
+
+<style>
+  .emulated-flex-gap > * {
+    margin: {{ trustBadgesSpacingBetween }}px 0 0 {{ trustBadgesSpacingBetween }}px;
+  }
+  
+  .emulated-flex-gap {
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin: -{{ trustBadgesSpacingBetween }}px 0 0 -{{ trustBadgesSpacingBetween }}px;
+    width: calc(100% + {{ trustBadgesSpacingBetween }}px);
+    justify-content: space-between;
+  }
+
+  .trust-badges-flex {
+    min-width: calc({% if trustBadgesTwoBadges %}50{% else %}100{% endif %}% - {{ trustBadgesSpacingBetween }}px);
+    flex-grow: 1;
+    height: {{ neededHeight }}px;
+    background-color: {{ trustBadgesBlockColor }} !important;
+    box-shadow: 2px 2px 4px 0 rgb(0 0 0 / 8%);
+    border-radius: {{ settings.mot_border_radius }}px !important;
+  }
+
+  .trust-badges-font {
+    font-size: {{ trustBadgesTitleSize }}px;
+    font-weight: {% if trustBadgesTitleBold %}400{% else %}300{% endif %};
+    text-align: center;
+    padding-left: {{ trustBadgesIconDistance }}px;
+  }
+
+  .trust-badges-line-height {
+    line-height: {{ neededHeight }}px;
+  }
+  
+  .trust-badges-padding {
+    padding-top: 0px;
+    justify-content: center;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  @media (max-width:819px)
+  {
+   .trust-badges-flex {
+     height: {{ neededHeight | times: 0.85 | ceil }}px !important;
+   }
+    
+   .trust-badges-font {
+     font-size: {{ trustBadgesTitleSize | times: 0.85 | ceil }}px !important;
+     padding-left: {{ trustBadgesIconDistance | times: 0.70 | ceil }}px !important;
+   }
+
+  .trust-badges-line-height {
+    line-height: {{ neededHeight | times: 0.85 | ceil }}px !important;
+  }
+
+   .trust-badges-mobile-icon {
+     width: {{ trustBadgesIconSize | times: 0.70 | ceil }}px !important;
+     height: {{ trustBadgesIconSize | times: 0.70 | ceil }}px !important;
+   }
+
+  .trust-badges-mobile-icon-truck2 {
+     padding-bottom: 2px;
+   }
+
+   .trust-badges-mobile-emoji-icon {
+     font-size: {{ trustBadgesIconSize | times: 0.59 | round }}px !important;
+   }
+  }
+</style>
+
+<div id="Product-content-{{ id }}">
+  <div style="margin-top: {{ trustBadgesDistToTop }}px !important"></div>
+
+  <div class="emulated-flex-gap">
+    {% if trustBadgesFirstTitle != blank %}
+      <div class="trust-badges-flex">
+        <div class="icon-and-text trust-badges-padding trust-badges-line-height">
+          {%- render 'trust-badges-icons', trustBadgesIcon: trustBadgesFirstIcon, trustBadgesSize: trustBadgesIconSize -%}
+          <div class="trust-badges-font">{{ trustBadgesFirstTitle }}</div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if trustBadgesSecondTitle != blank %}
+      <div class="trust-badges-flex">
+        <div class="icon-and-text trust-badges-padding trust-badges-line-height">
+          {%- render 'trust-badges-icons', trustBadgesIcon: trustBadgesSecondIcon, trustBadgesSize: trustBadgesIconSize -%}
+          <div class="trust-badges-font">{{ trustBadgesSecondTitle }}</div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if trustBadgesThirdTitle != blank %}
+      <div class="trust-badges-flex">
+        <div class="icon-and-text trust-badges-padding trust-badges-line-height">
+          {%- render 'trust-badges-icons', trustBadgesIcon: trustBadgesThirdIcon, trustBadgesSize: trustBadgesIconSize -%}
+          <div class="trust-badges-font">{{ trustBadgesThirdTitle }}</div>
+        </div>
+      </div>
+    {% endif %}              
+    
+    {% if trustBadgesFourthTitle != blank %}
+      <div class="trust-badges-flex">
+        <div class="icon-and-text trust-badges-padding trust-badges-line-height">
+          {%- render 'trust-badges-icons', trustBadgesIcon: trustBadgesFourthIcon, trustBadgesSize: trustBadgesIconSize -%}
+          <div class="trust-badges-font">{{ trustBadgesFourthTitle }}</div>
+        </div>
+      </div>
+    {% endif %}
+  </div>            
+
+  <div style="margin-bottom: {{ trustBadgesDistToBottom }}px !important"></div>
+</div>
